@@ -41,3 +41,10 @@ CREATE TABLE order_item(
       FOREIGN KEY(item_id) 
 	  REFERENCES item(id)
 );
+
+-- QUERY
+
+ALTER TABLE item
+  RENAME COLUMN status TO active;
+
+select item.id, item.item_name, item.price, item.status, category.category_name from item inner Join category on item.category_id = category.id WHERE category_id = 4;
