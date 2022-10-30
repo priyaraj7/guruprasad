@@ -9,7 +9,6 @@ import {
 const router = express.Router();
 
 router.get("/early-breakfast", earlyBreakfastController);
-
 router.get("/breakfast", breakfastController);
 router.get("/supper", supperController);
 router.get("/beverages", beveragesController);
