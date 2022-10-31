@@ -5,6 +5,7 @@ import itemRouter from "./src/routes/itemRoutes.js";
 import { initDb } from "./src/models/itemModel.js";
 
 const app = express();
+app.use(express.json()); // body parser
 dotenv.config();
 initDb();
 

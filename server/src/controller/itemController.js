@@ -3,6 +3,7 @@ import {
   breakfastModel,
   supperModel,
   beveragesModel,
+  itemModel,
 } from "../models/itemModel.js";
 
 export const earlyBreakfastController = async (req, res) => {
@@ -38,6 +39,25 @@ export const beveragesController = async (req, res) => {
     const beverages = await beveragesModel();
     res.send(beverages);
   } catch {
+    return res.status(400).json({ e });
+  }
+};
+
+export const itemController = async (req, res) => {
+  console.log(req.params);
+  // const params = new URLSearchParams({
+  //   id: req.query.id,
+  // });
+  // console.log(params);
+  //const category = req.params.category;
+  //categoryId
+  const id = Number(req.params.categoryId);
+  console.log(typeof id, "id");
+  try {
+    const item = await itemModel(id);
+    res.send(item);
+  } catch (e) {
+    console.log(e);
     return res.status(400).json({ e });
   }
 };
