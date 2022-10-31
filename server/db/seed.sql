@@ -52,7 +52,7 @@ ALTER TABLE item
 
 -- QUERY
 
-select item.id, item.item_name, item.price, item.status, category.category_name from item inner Join category on item.category_id = category.id WHERE category_id = 4;
+select item.id, item.category_id,item.item_name, item.price, item.active, category.category_name from item inner Join category on item.category_id = category.id WHERE category_id = 4;
 
 SELECT item.id, item.item_name,item.price, item.active,item.category_id,category.category_name FROM item RIGHT JOIN category ON item.category_id = 1;
 
