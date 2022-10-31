@@ -42,9 +42,14 @@ CREATE TABLE order_item(
 	  REFERENCES item(id)
 );
 
--- QUERY
 
 ALTER TABLE item
   RENAME COLUMN status TO active;
+
+  ALTER TABLE item
+  ALTER COLUMN active SET DEFAULT TRUE;
+
+
+-- QUERY
 
 select item.id, item.item_name, item.price, item.status, category.category_name from item inner Join category on item.category_id = category.id WHERE category_id = 4;
