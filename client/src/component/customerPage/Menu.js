@@ -95,7 +95,7 @@ export default function Menu() {
       {arr.map((category) => {
         if (!category || !category.items) return null;
         return (
-          <Box bg="gray.50" spacing="8">
+          <Box bg="gray.50" spacing="8" key={category.categoryId}>
             <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
               <Stack spacing={0} align={"center"}>
                 <Heading>{category.categoryName}</Heading>
@@ -107,7 +107,7 @@ export default function Menu() {
               >
                 {category.items.map((item) => {
                   return (
-                    <Box>
+                    <Box key={item.id}>
                       <ItemContent>
                         <Heading size="md">{item.item_name}</Heading>
                         <Flex
