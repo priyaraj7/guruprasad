@@ -6,7 +6,7 @@ export function initDb() {
   db = initDBConnection();
 }
 
-export const itemModel = async (id) => {
+export const itemsByCategory = async (id) => {
   const { rows: items } = await db.query(
     `SELECT item.id, item.category_id, item.item_name, item.price, category.category_name, category.description
     FROM 

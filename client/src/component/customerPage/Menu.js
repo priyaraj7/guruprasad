@@ -1,18 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllItem } from "../../api/catergoryApi";
 
-// function Menu() {
-//   const [item, setItem] = useState([]);
-
-//   useEffect(() => {
-//     (async () => setItem(await getAllItem(1)))();
-//   }, [1]);
-//   console.log(item);
-//   return null;
-// }
-
-// export default Menu;
-
 import {
   Box,
   Flex,
@@ -27,10 +15,6 @@ import {
 } from "@chakra-ui/react";
 
 import { FaRupeeSign } from "react-icons/fa";
-
-// const ItemBox = ({ children }) => {
-//   return <Box>{children}</Box>;
-// };
 
 const ItemContent = ({ children }) => {
   return (
@@ -64,39 +48,11 @@ const ItemContent = ({ children }) => {
   );
 };
 
-export default function Menu({ category }) {
-  const [item, setItem] = useState([]);
+export default function Menu() {
   const [earlyBreakfast, setEarlyBreakfast] = useState([]);
   const [breakfast, setBreakfast] = useState([]);
   const [supper, setSupper] = useState([]);
   const [beverages, setBeverages] = useState([]);
-
-  //   const getCategory = async (id) => setItem(await getAllItem(id));
-  //   useEffect(() => {
-  //     category.forEach(getCategory);
-  //   }, [category]);
-
-  //   useEffect(() => {
-  //     let controller = new AbortController();
-  //     debugger;
-  //     (async (id) => {
-  //       try {
-  //         const url = new URL("/api/getByCategories", document.location);
-  //         [1, 2, 3, 4].forEach((id) => url.searchParams.append("categoryId", id));
-  //         const response = await fetch(url.toString(), {
-  //           signal: controller.signal,
-  //         });
-  //         setItem(await response.json());
-  //         controller = null;
-  //       } catch (e) {
-  //         // Handle fetch error
-  //         console.log(e);
-  //       }
-  //     })();
-  //     return () => controller?.abort;
-  //   }, []);
-
-  //console.log(item);
 
   const getEarlyBreakfast = async () => {
     setEarlyBreakfast(await getAllItem(1));
@@ -151,9 +107,6 @@ export default function Menu({ category }) {
               >
                 {category.items.map((item) => {
                   return (
-                    // <Box>
-                    //   <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
-
                     <Box>
                       <ItemContent>
                         <Heading size="md">{item.item_name}</Heading>
@@ -174,9 +127,6 @@ export default function Menu({ category }) {
                         </Flex>
                       </ItemContent>
                     </Box>
-
-                    //   </Container>
-                    // </Box>
                   );
                 })}
               </Stack>
@@ -188,34 +138,29 @@ export default function Menu({ category }) {
   );
 }
 
-{
-  /* <Box bg={useColorModeValue("gray.100", "gray.700")}>
-        <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
-          <Stack spacing={0} align={"center"}>
-            <Heading>Early Breakfast</Heading>
-            <Text>6.30am to 12.00pm</Text>
-          </Stack>
-          <Stack
-            direction={{ base: "column", md: "row" }}
-            spacing={{ base: 10, md: 4, lg: 10 }}
-          >
-            <ItemBox>
-              <ItemContent>
-                <Heading size="md">Idli</Heading>
-                <Flex minWidth="max-content" alignItems="center" gap="2">
-                  <Box p="2">
-                    <Text size="md">
-                      <Icon as={FaRupeeSign} />
-                      100
-                    </Text>
-                  </Box>
-                  <Spacer />
+//   const getCategory = async (id) => setItem(await getAllItem(id));
+//   useEffect(() => {
+//     category.forEach(getCategory);
+//   }, [category]);
 
-                  <Button colorScheme="teal">Order Now</Button>
-                </Flex>
-              </ItemContent>
-            </ItemBox>
-          </Stack>
-        </Container>
-      </Box> */
-}
+//   useEffect(() => {
+//     let controller = new AbortController();
+//     debugger;
+//     (async (id) => {
+//       try {
+//         const url = new URL("/api/getByCategories", document.location);
+//         [1, 2, 3, 4].forEach((id) => url.searchParams.append("categoryId", id));
+//         const response = await fetch(url.toString(), {
+//           signal: controller.signal,
+//         });
+//         setItem(await response.json());
+//         controller = null;
+//       } catch (e) {
+//         // Handle fetch error
+//         console.log(e);
+//       }
+//     })();
+//     return () => controller?.abort;
+//   }, []);
+
+//console.log(item);
