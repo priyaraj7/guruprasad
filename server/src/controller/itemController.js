@@ -9,7 +9,7 @@ export const itemController = async (req, res) => {
     const item = await itemModel(id);
     res.send(item);
   } catch (e) {
-    //console.log(e);
+    console.log(e);
     return res.status(400).json({ e });
   }
 };

@@ -28,13 +28,14 @@ import {
 
 import { FaRupeeSign } from "react-icons/fa";
 
-const ItemBox = ({ children }) => {
-  return <Box>{children}</Box>;
-};
+// const ItemBox = ({ children }) => {
+//   return <Box>{children}</Box>;
+// };
 
 const ItemContent = ({ children }) => {
   return (
     <Stack
+      columns={{ sm: 2, md: 4 }}
       bg={useColorModeValue("white", "gray.800")}
       boxShadow={"lg"}
       p={8}
@@ -135,10 +136,60 @@ export default function Menu({ category }) {
 
   return (
     <>
-      {arr.map((category, index) => {
-        return <p>{category[index].item_name}</p>;
+      {arr.map((category) => {
+        if (!category || !category.items) return null;
+        return (
+          <Box bg="gray.50" spacing="8">
+            <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
+              <Stack spacing={0} align={"center"}>
+                <Heading>{category.categoryName}</Heading>
+                <Text>{category.description}</Text>
+              </Stack>
+              <Stack
+                direction={{ base: "column", md: "row" }}
+                spacing={{ base: 10, md: 4, lg: 10 }}
+              >
+                {category.items.map((item) => {
+                  return (
+                    // <Box>
+                    //   <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
+
+                    <Box>
+                      <ItemContent>
+                        <Heading size="md">{item.item_name}</Heading>
+                        <Flex
+                          minWidth="max-content"
+                          alignItems="center"
+                          gap="2"
+                        >
+                          <Box p="2">
+                            <Text size="md">
+                              <Icon as={FaRupeeSign} />
+                              {item.price}
+                            </Text>
+                          </Box>
+                          <Spacer />
+
+                          <Button colorScheme="teal">Order Now</Button>
+                        </Flex>
+                      </ItemContent>
+                    </Box>
+
+                    //   </Container>
+                    // </Box>
+                  );
+                })}
+              </Stack>
+            </Container>
+          </Box>
+        );
       })}
-      <Box bg={useColorModeValue("gray.100", "gray.700")}>
+    </>
+  );
+}
+
+{
+  /* <Box bg={useColorModeValue("gray.100", "gray.700")}>
         <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
           <Stack spacing={0} align={"center"}>
             <Heading>Early Breakfast</Heading>
@@ -166,7 +217,5 @@ export default function Menu({ category }) {
             </ItemBox>
           </Stack>
         </Container>
-      </Box>
-    </>
-  );
+      </Box> */
 }

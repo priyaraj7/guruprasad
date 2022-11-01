@@ -56,3 +56,7 @@ select item.id, item.category_id,item.item_name, item.price, item.active, catego
 
 SELECT item.id, item.item_name,item.price, item.active,item.category_id,category.category_name FROM item RIGHT JOIN category ON item.category_id = 1;
 
+-- adding column
+
+ALTER TABLE category 
+ADD COLUMN description VARCHAR;
