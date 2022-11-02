@@ -1,7 +1,18 @@
 import express from "express";
 import fetch from "node-fetch";
 
+import { mockGoogleApiData } from "./googleReview.js";
+
 const router = express.Router();
+
+// MOCK-API-DATA FETCHING
+
+router.get("/reviews", async (req, res) => {
+  res.json(mockGoogleApiData);
+});
+
+/*
+// REAL API FETCHING --- Don't Delete
 
 router.get("/reviews", async (req, res) => {
   const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${process.env.PLACE_ID}&key=${process.env.GOOGLE_API}`;
@@ -18,6 +29,7 @@ router.get("/reviews", async (req, res) => {
   }
 });
 
+*/
 export default router;
 
 // router.get("/getByCategories", async (req, resp) => {
