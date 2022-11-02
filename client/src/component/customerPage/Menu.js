@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllItem } from "../../api/catergoryApi";
+import { getAllItem } from "../../api/categoryApi";
 
 import {
   Box,
