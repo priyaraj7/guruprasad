@@ -6,7 +6,7 @@ export const itemController = async (req, res) => {
   const id = Number(req.params.categoryId);
   // console.log(typeof id, "id");
   try {
-    const item = await itemsByCategory(id);
+    const item = await itemsByCategory();
     res.send(item);
   } catch (e) {
     console.log(e);

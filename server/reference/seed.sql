@@ -60,3 +60,44 @@ SELECT item.id, item.item_name,item.price, item.active,item.category_id,category
 
 ALTER TABLE category 
 ADD COLUMN description VARCHAR;
+
+SELECT 
+category.id, category.category_name, category.description
+    FROM category
+     INNER JOIN 
+    item on item.category_id = category.id 
+    WHERE  item.active = TRUE
+    ORDER BY id ASC;
+
+
+    select json_agg(item)
+from (
+  select * from item where item.category_id  = 1
+) as item;
+
+
+select row_to_json(cat) as category
+from(
+  select c.id, c.category_name, 
+  (select json_agg(ite)
+  from ( 
+    select * from item where category_id = c.id
+  ) ite
+) as item
+from category as c) cat;
+
+
+-- JSON_COMPOSE creates a JSON document composed of the input parameters specified.
+-- This function provides a complex composition of a JSON document when used in
+--  conjunction with the JSON_AGG function.
+
+
+SELECT JSON_Compose(T.company, T.empAge AS age, T.employees)
+FROM
+ (
+  SELECT company, empAge, 
+     JSON_agg(empID AS id, 
+              empName AS name) AS employees 
+  FROM emp_table
+  GROUP BY company, empAge
+ ) AS T;
