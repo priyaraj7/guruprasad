@@ -34,10 +34,28 @@ function ReviewPage() {
         color="gray.500"
         fontWeight="semibold"
         letterSpacing="wide"
-        fontSize="xs"
+        fontSize="md"
       >
         Ujire, Karnataka 574240, India
       </Box>
+      <Box display="flex" alignItems="baseline">
+        <Box display="flex" mt="2" alignItems="center">
+          {Array(5)
+            .fill("")
+            .map((_, i) => (
+              <StarIcon
+                key={i}
+                color={i < apiData.result.rating ? "orange.500" : "gray.300"}
+              />
+            ))}
+        </Box>
+        <Box as="span" ml="2" color="gray.600" fontSize="sm">
+          {apiData.result.user_ratings_total} reviews
+        </Box>
+
+        {/* <Text>{apiData.result.user_ratings_total}<Text as= span>  user_ratings_total</Text> */}
+      </Box>
+      {/* xxxx */}
 
       {apiData.result.reviews.map((author) => {
         return (
