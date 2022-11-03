@@ -1,14 +1,14 @@
 import Header from "./Header.js";
 import Menu from "./Menu.js";
 import ReviewPage from "./ReviewPage.js";
+import ContactPage from "./ContactPage";
 
 function customer() {
   return (
     <>
       <Header />
-      <Menu
-      //  category={[1, 2, 3, 4]}
-      />
+      <Menu />
+      <ContactPage />
       <ReviewPage />
     </>
   );

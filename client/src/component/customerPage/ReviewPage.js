@@ -52,10 +52,8 @@ function ReviewPage() {
         <Box as="span" ml="2" color="gray.600" fontSize="sm">
           {apiData.result.user_ratings_total} reviews
         </Box>
-
-        {/* <Text>{apiData.result.user_ratings_total}<Text as= span>  user_ratings_total</Text> */}
       </Box>
-      {/* xxxx */}
+      {/* Mapping*/}
 
       {apiData.result.reviews.map((author) => {
         return (
@@ -74,7 +72,6 @@ function ReviewPage() {
                   ml="1"
                   size="md"
                   name={author.author_name}
-                  // src="https://bit.ly/ryan-florence"
                   src={author.author_url}
                 />{" "}
               </Box>{" "}
