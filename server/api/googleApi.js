@@ -1,3 +1,4 @@
+import { LogOutput } from "concurrently";
 import express from "express";
 import fetch from "node-fetch";
 
@@ -30,6 +31,7 @@ router.get("/reviews", async (req, res) => {
 });
 
 */
+
 export default router;
 
 // router.get("/getByCategories", async (req, resp) => {

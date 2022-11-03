@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello from ExpressJS" });
 });
 
-app.use("/api", googleAPIrouter);
+app.use("/place", googleAPIrouter);
 app.use("/api", itemRouter);
 
 // console.log that your server is up and running

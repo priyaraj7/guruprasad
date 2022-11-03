@@ -1,7 +1,6 @@
 export const getAllItem = async (id) => {
-  const request = await fetch(`/api/${id}`);
-  const result = await request.json();
+  const response = await fetch(`/api/${id}`);
+  const result = await response.json();
 
-  //console.log(result);
   return result;
 };
