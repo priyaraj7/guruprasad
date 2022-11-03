@@ -3,7 +3,7 @@ import Menu from "./Menu.js";
 import ReviewPage from "./ReviewPage.js";
 import ContactPage from "./ContactPage";
 
-function customer() {
+function CustomerPage() {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ function customer() {
   );
 }
 
-export default customer;
+export default CustomerPage;

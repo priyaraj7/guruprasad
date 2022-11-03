@@ -1,8 +1,7 @@
-import { LogOutput } from "concurrently";
 import express from "express";
 import fetch from "node-fetch";
 
-import { mockGoogleApiData } from "./googleReview.js";
+import { mockGoogleApiData } from "./mockGoogleApiData .js";
 
 const router = express.Router();
 
@@ -33,8 +32,3 @@ router.get("/reviews", async (req, res) => {
 */
 
 export default router;
-
-// router.get("/getByCategories", async (req, resp) => {
-//   console.log(req.query.categoryId);
-//   return resp.send("OK -" + req.query.categoryId.join(", "));
-// });
