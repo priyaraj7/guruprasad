@@ -55,7 +55,7 @@ function ReviewPage() {
       </Box>
       {/* Mapping*/}
 
-      {apiData.result.reviews.map((author) => {
+      {apiData.result.reviews.map((review) => {
         return (
           <Box
             borderWidth="1px"
