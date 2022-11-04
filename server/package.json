@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "concurrently 'npm run server' 'cd .. && cd client && npm start'",
     "start": "node server.js",
     "server": "nodemon server.js"
   },
@@ -14,6 +15,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "node-fetch": "^3.2.10",
     "pg": "^8.8.0"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 
 import itemRouter from "./src/routes/itemRoutes.js";
+import googleAPIrouter from "./api/googleApi.js";
 import { initDb } from "./src/models/itemModel.js";
 
 const app = express();
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello from ExpressJS" });
 });
 
+app.use("/place", googleAPIrouter);
 app.use("/api", itemRouter);
 
 // console.log that your server is up and running

@@ -1,11 +1,16 @@
 import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
-import Customer from "./component/customerPage/Customer.js";
+
+import CustomerPage from "./component/customer/CustomerPage.js";
+
+
 
 function App() {
   return (
     <ChakraProvider>
-      <Customer />
+
+      <CustomerPage />
+
     </ChakraProvider>
   );
 }
