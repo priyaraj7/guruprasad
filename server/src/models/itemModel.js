@@ -26,5 +26,5 @@ FROM CATEGORY C
 ORDER BY C.ID ASC;`
   );
 
-  return items
+  return items;
 };
