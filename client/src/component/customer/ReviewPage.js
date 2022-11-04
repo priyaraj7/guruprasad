@@ -8,7 +8,7 @@ import { Avatar, Stack } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
 function ReviewPage() {
-  let [apiData, setApiData] = useState(null);
+  const [apiData, setApiData] = useState(null);
 
   const getApiData = async () => {
     setApiData(await getReviews());
