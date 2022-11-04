@@ -65,10 +65,10 @@ export default function Menu() {
     <>
       {menuList.map((category) => {
         return (
-          <Box bg="gray.50" spacing="8" key={category.categoryId}>
+          <Box bg="gray.50" spacing="8" key={category.id}>
             <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
               <Stack spacing={0} align={"center"}>
-                <Heading>{category.category_name}</Heading>
+                <Heading>{category.categoryname}</Heading>
                 <Text>{category.description}</Text>
               </Stack>
               <Stack
