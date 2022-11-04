@@ -6,24 +6,25 @@ export function initDb() {
   db = initDBConnection();
 }
 
-export const itemsByCategory = async (id) => {
+export const itemsByCategory = async () => {
   const { rows: items } = await db.query(
-    `SELECT item.id, item.category_id, item.item_name, item.price, category.category_name, category.description
-    FROM 
-    item INNER JOIN 
-    category on item.category_id = category.id 
-    WHERE category_id = ${id} AND item.active = TRUE
-    ORDER BY id ASC;`
+    `SELECT
+    C.ID,
+    C.CATEGORY_NAME as categoryName ,
+    C.DESCRIPTION,
+   (
+        SELECT json_agg(json_build_object(
+            'id', ID,
+            'itemName', ITEM_NAME,
+            'price', PRICE
+        ))
+        FROM ITEM
+        WHERE
+            CATEGORY_ID = C.ID AND ACTIVE IS TRUE
+    ) AS  ITEM    
+FROM CATEGORY C
+ORDER BY C.ID ASC;`
   );
-  if (items.length) {
-    const result = {
-      categoryId: items[0].category_id,
-      categoryName: items[0].category_name,
-      description: items[0].description,
-      items,
-    };
-    return result;
-  }
 
-  return null;
+  return items.length ? items : "NO items";
 };

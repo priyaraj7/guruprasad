@@ -8,7 +8,7 @@ import { Avatar, Stack } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
 function ReviewPage() {
-  const [apiData, setApiData] = useState(null);
+  let [apiData, setApiData] = useState(null);
 
   const getApiData = async () => {
     setApiData(await getReviews());
@@ -55,13 +55,14 @@ function ReviewPage() {
       </Box>
       {/* Mapping*/}
 
-      {apiData.result.reviews.map((review) => {
+      {apiData.result.reviews.map((author) => {
         return (
           <Box
+            py={6}
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
-            key={review.time}
+            key={author.time}
           >
             {" "}
             <Stack spacing={8} direction="row">
@@ -71,8 +72,8 @@ function ReviewPage() {
                   mt="1"
                   ml="1"
                   size="md"
-                  name={review.author_name}
-                  src={review.author_url}
+                  name={author.author_name}
+                  src={author.author_url}
                 />{" "}
               </Box>{" "}
               <Box>
@@ -84,7 +85,7 @@ function ReviewPage() {
                   lineHeight="tight"
                   noOfLines={1}
                 >
-                  {review.author_name}
+                  {author.author_name}
                 </Box>
                 <Box
                   color="gray.500"
@@ -92,7 +93,7 @@ function ReviewPage() {
                   letterSpacing="wide"
                   fontSize="xs"
                 >
-                  {review.relative_time_description}
+                  {author.relative_time_description}
                 </Box>
                 <Box display="flex" mt="2" alignItems="center">
                   {Array(5)
@@ -100,11 +101,11 @@ function ReviewPage() {
                     .map((_, i) => (
                       <StarIcon
                         key={i}
-                        color={i < review.rating ? "orange.500" : "gray.300"}
+                        color={i < author.rating ? "orange.500" : "gray.300"}
                       />
                     ))}
                 </Box>
-                <Text>{review.text}</Text>
+                <Text>{author.text}</Text>
               </Box>
             </Stack>
           </Box>
