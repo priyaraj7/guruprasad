@@ -2,12 +2,11 @@ import { itemsByCategory } from "../models/itemModel.js";
 
 export const itemController = async (req, res) => {
   //console.log(req.params);
+  //debugger;
 
-  const id = Number(req.params.categoryId);
-  // console.log(typeof id, "id");
   try {
     const item = await itemsByCategory();
-    res.send(item);
+    res.json(item);
   } catch (e) {
     console.log(e);
     return res.status(400).json({ e });

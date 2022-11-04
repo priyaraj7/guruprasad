@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllItem } from "../../api/categoryApi";
+import { getAllItem } from "../../api/menuListApi";
 
 import {
   Box,
@@ -49,67 +49,37 @@ const ItemContent = ({ children }) => {
 };
 
 export default function Menu() {
-  const [earlyBreakfast, setEarlyBreakfast] = useState([]);
-  const [breakfast, setBreakfast] = useState([]);
-  const [supper, setSupper] = useState([]);
-  const [beverages, setBeverages] = useState([]);
+  const [menuList, setMenuList] = useState(null);
 
-  const getEarlyBreakfast = async () => {
-    setEarlyBreakfast(await getAllItem(1));
+  const getMenuList = async () => {
+    setMenuList(await getAllItem(1));
   };
 
   useEffect(() => {
-    getEarlyBreakfast();
+    getMenuList();
   }, []);
 
-  const getBreakfast = async () => {
-    setBreakfast(await getAllItem(2));
-  };
+  console.log(menuList);
 
-  useEffect(() => {
-    getBreakfast();
-  }, []);
-
-  const getSupper = async () => {
-    setSupper(await getAllItem(3));
-  };
-
-  useEffect(() => {
-    getSupper();
-  }, []);
-
-  const getBeverages = async () => {
-    setBeverages(await getAllItem(4));
-  };
-
-  useEffect(() => {
-    getBeverages();
-  }, []);
-
-  console.log(earlyBreakfast);
-  let arr = [earlyBreakfast, breakfast, supper, beverages];
-  // console.log(arr);
-
-  return (
+  return menuList ? (
     <>
-      {arr.map((category) => {
-        if (!category || !category.items) return null;
+      {menuList.map((category) => {
         return (
           <Box bg="gray.50" spacing="8" key={category.categoryId}>
             <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
               <Stack spacing={0} align={"center"}>
-                <Heading>{category.categoryName}</Heading>
+                <Heading>{category.category_name}</Heading>
                 <Text>{category.description}</Text>
               </Stack>
               <Stack
                 direction={{ base: "column", md: "row" }}
                 spacing={{ base: 10, md: 4, lg: 10 }}
               >
-                {category.items.map((item) => {
+                {category.item.map((item) => {
                   return (
                     <Box key={item.id}>
                       <ItemContent>
-                        <Heading size="md">{item.item_name}</Heading>
+                        <Heading size="md">{item.itemName}</Heading>
                         <Flex
                           minWidth="max-content"
                           alignItems="center"
@@ -135,6 +105,8 @@ export default function Menu() {
         );
       })}
     </>
+  ) : (
+    <h1>Loading....</h1>
   );
 }
 

@@ -10,12 +10,12 @@ export const itemsByCategory = async () => {
   const { rows: items } = await db.query(
     `SELECT
     C.ID,
-    C.CATEGORY_NAME,
+    C.CATEGORY_NAME as categoryName ,
     C.DESCRIPTION,
    (
         SELECT json_agg(json_build_object(
             'id', ID,
-            'itemname', ITEM_NAME,
+            'itemName', ITEM_NAME,
             'price', PRICE
         ))
         FROM ITEM

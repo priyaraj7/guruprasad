@@ -101,3 +101,5 @@ FROM
   FROM emp_table
   GROUP BY company, empAge
  ) AS T;
+
+--  ALTER TABLE category rename column category_name to Cname
