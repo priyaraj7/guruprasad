@@ -61,7 +61,7 @@ function ReviewPage() {
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
-            key={author.time}
+            key={review.time}
           >
             {" "}
             <Stack spacing={8} direction="row">
@@ -71,8 +71,8 @@ function ReviewPage() {
                   mt="1"
                   ml="1"
                   size="md"
-                  name={author.author_name}
-                  src={author.author_url}
+                  name={review.author_name}
+                  src={review.author_url}
                 />{" "}
               </Box>{" "}
               <Box>
@@ -84,7 +84,7 @@ function ReviewPage() {
                   lineHeight="tight"
                   noOfLines={1}
                 >
-                  {author.author_name}
+                  {review.author_name}
                 </Box>
                 <Box
                   color="gray.500"
@@ -92,7 +92,7 @@ function ReviewPage() {
                   letterSpacing="wide"
                   fontSize="xs"
                 >
-                  {author.relative_time_description}
+                  {review.relative_time_description}
                 </Box>
                 <Box display="flex" mt="2" alignItems="center">
                   {Array(5)
@@ -100,11 +100,11 @@ function ReviewPage() {
                     .map((_, i) => (
                       <StarIcon
                         key={i}
-                        color={i < author.rating ? "orange.500" : "gray.300"}
+                        color={i < review.rating ? "orange.500" : "gray.300"}
                       />
                     ))}
                 </Box>
-                <Text>{author.text}</Text>
+                <Text>{review.text}</Text>
               </Box>
             </Stack>
           </Box>
