@@ -20,39 +20,41 @@ function ReviewPage() {
 
   return apiData ? (
     <>
-      <Box
-        mt="1"
-        fontWeight="semibold"
-        as="h1"
-        fontSize="4xl"
-        // lineHeight="tight"
-        noOfLines={1}
-      >
-        Hotel GURUPRASAD
-      </Box>
-      <Box
-        color="gray.500"
-        fontWeight="semibold"
-        letterSpacing="wide"
-        fontSize="md"
-      >
-        Ujire, Karnataka 574240, India
-      </Box>
-      <Box display="flex" alignItems="baseline">
-        <Box display="flex" mt="2" alignItems="center">
-          {Array(5)
-            .fill("")
-            .map((_, i) => (
-              <StarIcon
-                key={i}
-                color={i < apiData.result.rating ? "orange.500" : "gray.300"}
-              />
-            ))}
+      <div>
+        <Box
+          mt="1"
+          fontWeight="semibold"
+          as="h1"
+          fontSize="4xl"
+          // lineHeight="tight"
+          noOfLines={1}
+        >
+          Hotel GURUPRASAD
         </Box>
-        <Box as="span" ml="2" color="gray.600" fontSize="sm">
-          {apiData.result.user_ratings_total} reviews
+        <Box
+          color="gray.500"
+          fontWeight="semibold"
+          letterSpacing="wide"
+          fontSize="md"
+        >
+          Ujire, Karnataka 574240, India
         </Box>
-      </Box>
+        <Box display="flex" alignItems="baseline">
+          <Box display="flex" mt="2" alignItems="center">
+            {Array(5)
+              .fill("")
+              .map((_, i) => (
+                <StarIcon
+                  key={i}
+                  color={i < apiData.result.rating ? "orange.500" : "gray.300"}
+                />
+              ))}
+          </Box>
+          <Box as="span" ml="2" color="gray.600" fontSize="sm">
+            {apiData.result.user_ratings_total} reviews
+          </Box>
+        </Box>
+      </div>
       {/* Mapping*/}
 
       {apiData.result.reviews.map((review) => {
@@ -93,7 +95,7 @@ function ReviewPage() {
                   letterSpacing="wide"
                   fontSize="xs"
                 >
-                  {author.relative_time_description}
+                  {review.relative_time_description}
                 </Box>
                 <Box display="flex" mt="2" alignItems="center">
                   {Array(5)

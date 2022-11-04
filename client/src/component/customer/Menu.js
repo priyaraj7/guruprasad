@@ -12,6 +12,7 @@ import {
   Spacer,
   useColorModeValue,
   Icon,
+  SimpleGrid,
 } from "@chakra-ui/react";
 
 import { FaRupeeSign } from "react-icons/fa";
@@ -71,8 +72,9 @@ export default function Menu() {
                 <Heading>{category.categoryname}</Heading>
                 <Text>{category.description}</Text>
               </Stack>
-              <Stack
-                direction={{ base: "column", md: "row" }}
+              <SimpleGrid
+                // direction={{ base: "column", md: "row" }}
+                columns={[1, null, 4]}
                 spacing={{ base: 10, md: 4, lg: 10 }}
               >
                 {category.item.map((item) => {
@@ -99,7 +101,7 @@ export default function Menu() {
                     </Box>
                   );
                 })}
-              </Stack>
+              </SimpleGrid>
             </Container>
           </Box>
         );
