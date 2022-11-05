@@ -53,7 +53,7 @@ export default function Menu() {
   const [menuList, setMenuList] = useState(null);
 
   const getMenuList = async () => {
-    setMenuList(await getAllItem(1));
+    setMenuList(await getAllItem());
   };
 
   useEffect(() => {
