@@ -77,7 +77,7 @@ export default function Menu() {
                 columns={[1, null, 4]}
                 spacing={{ base: 10, md: 4, lg: 10 }}
               >
-                {category.item.map((item) => {
+                {category.items.map((item) => {
                   return (
                     <Box key={item.id}>
                       <ItemContent>
