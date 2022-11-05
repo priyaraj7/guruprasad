@@ -14,9 +14,16 @@ export const itemController = async (req, res) => {
 };
 
 export const contactUsController = async (req, res) => {
+  const user = {
+    name: req.body.name,
+    email: req.body.email,
+    phoneNumber: req.body.phone_number,
+    message: req.body.message,
+  };
+
   try {
     const userInfo = await contactMessage(user);
-    res.json(userInfo);
+    res.json(userInfo.rows[0]);
   } catch (error) {
     console.log(error);
     return res.status(400).json({ error });

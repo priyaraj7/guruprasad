@@ -59,7 +59,8 @@ ALTER TABLE item
   messaged_at TIMESTAMP DEFAULT NOW(),
 );
 
-
+ALTER TABLE contact 
+ADD COLUMN messaged_at TIMESTAMP DEFAULT NOW();
 -- QUERY
 
 select item.id, item.category_id,item.item_name, item.price, item.active, category.category_name from item inner Join category on item.category_id = category.id WHERE category_id = 4;

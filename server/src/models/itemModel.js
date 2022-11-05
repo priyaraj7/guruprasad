@@ -31,8 +31,8 @@ ORDER BY C.ID ASC;`
 
 // FOR CONTACT PAGE
 export const contactMessage = async (user) => {
-  const insertQuery = `INSERT INTO contact(name, email, phone_number, message, messaged_at) 
-                 VALUES($1, $2, $3, $4, $5)
+  const insertQuery = `INSERT INTO contact(name, email, phone_number, message) 
+                 VALUES($1, $2, $3, $4)
                  RETURNING *`;
   const values = [user.name, user.email, user.phoneNumber, user.message];
 
