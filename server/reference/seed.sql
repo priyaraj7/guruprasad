@@ -50,6 +50,16 @@ ALTER TABLE item
   ALTER COLUMN active SET DEFAULT TRUE;
 
 
+  CREATE TABLE contact(
+   id serial PRIMARY KEY,
+   name VARCHAR (255) NOT NULL,
+   email VARCHAR (255) NOT NULL,
+  phone_number TEXT,
+  message VARCHAR  NOT NULL,
+  messaged_at TIMESTAMP DEFAULT NOW(),
+);
+
+
 -- QUERY
 
 select item.id, item.category_id,item.item_name, item.price, item.active, category.category_name from item inner Join category on item.category_id = category.id WHERE category_id = 4;
