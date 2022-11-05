@@ -21,7 +21,7 @@ export const itemsByCategory = async () => {
         FROM ITEM
         WHERE
             CATEGORY_ID = C.ID AND ACTIVE IS TRUE
-    ) AS  ITEM    
+    ) AS  ITEMS
 FROM CATEGORY C
 ORDER BY C.ID ASC;`
   );
