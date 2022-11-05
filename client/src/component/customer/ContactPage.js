@@ -69,7 +69,7 @@ function ContactPage() {
                 <Box bg="white" borderRadius="lg">
                   <Box m={8} color="#0B0E3F">
                     <VStack spacing={5}>
-                      <FormControl id="name">
+                      <FormControl id="name" isRequired>
                         <FormLabel>Your Name</FormLabel>
                         <InputGroup borderColor="#E0E1E7">
                           <InputLeftElement
@@ -79,7 +79,7 @@ function ContactPage() {
                           <Input type="text" size="md" />
                         </InputGroup>
                       </FormControl>
-                      <FormControl id="name">
+                      <FormControl id="email" isRequired>
                         <FormLabel>Mail</FormLabel>
                         <InputGroup borderColor="#E0E1E7">
                           <InputLeftElement
@@ -99,7 +99,7 @@ function ContactPage() {
                           <Input type="text" size="md" />
                         </InputGroup>
                       </FormControl>
-                      <FormControl id="name">
+                      <FormControl id="message" isRequired>
                         <FormLabel>Message</FormLabel>
                         <Textarea
                           borderColor="gray.300"
