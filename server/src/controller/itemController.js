@@ -1,4 +1,4 @@
-import { itemsByCategory } from "../models/itemModel.js";
+import { itemsByCategory, contactMessage } from "../models/itemModel.js";
 
 export const itemController = async (req, res) => {
   //console.log(req.params);
@@ -8,8 +8,18 @@ export const itemController = async (req, res) => {
     const item = await itemsByCategory();
     res.json(item);
   } catch (e) {
-    console.log(e);
-    return res.status(400).json({ e });
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+export const contactUsController = async (req, res) => {
+  try {
+    const userInfo = await contactMessage(user);
+    res.json(userInfo);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
   }
 };
 

@@ -28,3 +28,15 @@ ORDER BY C.ID ASC;`
 
   return items.length ? items : "NO items";
 };
+
+// FOR CONTACT PAGE
+export const contactMessage = async (user) => {
+  const insertQuery = `INSERT INTO contact(name, email, phone_number, message, messaged_at) 
+                 VALUES($1, $2, $3, $4, $5)
+                 RETURNING *`;
+  const values = [user.name, user.email, user.phoneNumber, user.message];
+
+  const result = await db.query(insertQuery, values);
+
+  return result;
+};
