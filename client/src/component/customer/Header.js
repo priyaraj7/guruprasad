@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
-import { Link as RouteLink } from "react-router-dom";
+import { Link as RouteLink, NavLink } from "react-router-dom";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -113,9 +113,11 @@ const DesktopNav = () => {
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
               <Link
-                as={RouteLink}
+                as={NavLink}
                 p={2}
                 to={navItem.href ?? "#"}
+                _activeLink={{ fontWeight: "bold", color: "#1e81b0" }}
+                // className={({ isActive }) => (isActive ? "active" : "inactive")}
                 fontSize={"sm"}
                 fontWeight={500}
                 color={linkColor}

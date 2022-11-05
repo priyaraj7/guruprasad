@@ -4,6 +4,7 @@ import {
   Heading,
   Stack,
   Flex,
+  Box,
   Button,
   Text,
   VStack,
@@ -12,20 +13,40 @@ import {
 function HeroComponent() {
   return (
     <Flex
-      w={"full"}
-      h={"100vh"}
+      p={4}
+      //   w={"full"}
+      //   h={"100vh"}
       backgroundImage={`url(${image})`}
-      backgroundSize={"cover"}
-      backgroundPosition={"center center"}
+      //   transform={" rotate(-90deg)"}
+      //   backgroundSize={"cover"}
+      //   backgroundPosition={"center center"}
     >
-      <Heading
-        // textAlign={"center"}
-        fontWeight={600}
-        fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
-        lineHeight={"110%"}
+      <VStack
+        w={"full"}
+        justify={"center"}
+        px={useBreakpointValue({ base: 4, md: 8 })}
+        // bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
       >
-        GURUPRASAD
-      </Heading>
+        <Stack maxW={"2xl"} align={"center"} spacing={6}>
+          <Text
+            fontWeight={700}
+            lineHeight={1.2}
+            fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}
+          >
+            GURUPRASAD
+          </Text>
+          <Text>Passionate about good service and food</Text>
+          <Box
+            bg={"green"}
+            rounded={"full"}
+            p={4}
+            color={"white"}
+            fontWeight="bold"
+          >
+            Veg Meal & Tiffin
+          </Box>
+        </Stack>
+      </VStack>
     </Flex>
   );
 }

@@ -10,7 +10,7 @@ function CustomerPage() {
   return (
     <>
       <Header />
-      {/* <HeroComponent /> */}
+      <HeroComponent />
       <Routes>
         <Route index element={<Menu />} />
         <Route path="/contact" element={<ContactPage />} />
