@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import itemRouter from "./src/routes/itemRoutes.js";
 import googleAPIrouter from "./api/googleApi.js";
@@ -7,6 +8,7 @@ import { initDb } from "./src/models/itemModel.js";
 
 const app = express();
 app.use(express.json()); // body parser
+app.use(cors());
 dotenv.config();
 initDb();
 

@@ -17,6 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
+import { Link as RouteLink } from "react-router-dom";
+
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -111,8 +113,9 @@ const DesktopNav = () => {
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
               <Link
+                as={RouteLink}
                 p={2}
-                href={navItem.href ?? "#"}
+                to={navItem.href ?? "#"}
                 fontSize={"sm"}
                 fontWeight={500}
                 color={linkColor}
@@ -151,6 +154,7 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Link
+      as={RouteLink}
       href={href}
       role={"group"}
       display={"block"}
@@ -206,8 +210,9 @@ const MobileNavItem = ({ label, href }: NavItem) => {
     <Stack spacing={4} onClick={onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? "#"}
+        as={RouteLink}
+        // as={Link}
+        to={href ?? "#"}
         justify={"space-between"}
         align={"center"}
         _hover={{
@@ -225,31 +230,32 @@ const MobileNavItem = ({ label, href }: NavItem) => {
   );
 };
 
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
-  href?: string;
-}
+// interface NavItem {
+//   label: string;
+//   subLabel?: string;
+//   children?: Array<NavItem>;
+//   href?: string;
+// }
 
-const NAV_ITEMS: Array<NavItem> = [
+const NAV_ITEMS = [
   {
     label: "Home",
+    href: "/",
   },
   {
     label: "Menu",
-    href: "#",
+    href: "/",
   },
   {
     label: "Contact Us",
-    href: "#",
+    href: "/contact",
   },
   {
     label: "Reviews",
-    href: "#",
+    href: "/reviews",
   },
   {
     label: "Cart",
-    href: "#",
+    href: "/cart",
   },
 ];
