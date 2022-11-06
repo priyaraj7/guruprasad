@@ -63,7 +63,7 @@ export default function Header() {
           </Flex>
         </Flex>
 
-        <Stack
+        {/* <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
@@ -91,7 +91,7 @@ export default function Header() {
           >
             Sign Up
           </Button>
-        </Stack>
+        </Stack> */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -151,7 +151,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
     <Link
       as={RouteLink}
@@ -203,7 +203,7 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({ label, href }: NavItem) => {
+const MobileNavItem = ({ label, href }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
