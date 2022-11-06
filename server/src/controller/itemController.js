@@ -36,9 +36,10 @@ export const contactUsController = async (req, res) => {
   const user = {
     name: req.body.name,
     email: req.body.email,
-    phoneNumber: req.body.phone_number,
+    phoneNumber: req.body.phoneNumber,
     message: req.body.message,
   };
+  console.log(req.body);
 
   try {
     const userInfo = await postMessage(user);

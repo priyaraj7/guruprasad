@@ -1,5 +1,5 @@
 const requestHeader = {
-  header: {
+  headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
   },

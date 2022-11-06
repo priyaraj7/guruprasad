@@ -48,6 +48,5 @@ export const postMessage = async (user) => {
 
 // Delete query
 export const deleteMessage = async (id) => {
-  debugger;
   return await db.query(`DELETE FROM message WHERE id = $1`, [id]);
 };

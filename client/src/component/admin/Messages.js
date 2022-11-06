@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { Box, Text, Button, Stack, Checkbox, Spacer } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Button,
+  Stack,
+  Checkbox,
+  Spacer,
+  useToast,
+} from "@chakra-ui/react";
 
 import {
   getMessages,
@@ -22,16 +30,21 @@ function MessageComponent() {
   useEffect(() => {
     getMessageList();
   }, []);
+  const toast = useToast();
 
-  const deleteMessage = (id) => {
-    const removeMsg = userMessages.filter((msg) => msg.id === id);
-    deleteMessages(id);
-
-    //const index = userMessages.findIndex((message) => message.id === id);
-
-    //  const removeMsg = userMessages.splice(index, 1);
-
-    setUserMessages(removeMsg);
+  const deleteMessage = async (id) => {
+    const result = await deleteMessages(id);
+    if (result && result.success) {
+      const removeMsg = userMessages.filter((msg) => msg.id !== id);
+      setUserMessages(removeMsg);
+    } else {
+      toast({
+        title: "Failed to delete message.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   console.log("mesg", userMessages);
@@ -44,7 +57,7 @@ function MessageComponent() {
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
-            key={message.time}
+            key={message.id}
           >
             {" "}
             <Stack spacing={8} direction="row">
