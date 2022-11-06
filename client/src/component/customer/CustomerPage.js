@@ -3,6 +3,7 @@ import Menu from "./Menu.js";
 import ReviewPage from "./ReviewPage.js";
 import ContactPage from "./ContactPage";
 import HeroComponent from "./HeroComponent";
+import MessageComponent from "../admin/Messages";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -16,6 +17,9 @@ function CustomerPage() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/reviews" element={<ReviewPage />} />
       </Routes>
+
+      {/* later delete it */}
+      <MessageComponent />
     </>
   );
 }

@@ -49,7 +49,6 @@ export const contactUsController = async (req, res) => {
   }
 };
 
-//not working
 export const deleteMessageController = async (req, res) => {
   const id = parseInt(req.params.id);
 

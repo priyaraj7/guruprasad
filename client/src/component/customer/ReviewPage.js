@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 
 import { getReviews } from "../../api/googleApi.js";
 
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Avatar, Stack } from "@chakra-ui/react";
 
-import { Avatar, Stack } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
 function ReviewPage() {
