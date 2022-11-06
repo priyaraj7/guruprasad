@@ -1,4 +1,9 @@
-import { itemsByCategory, contactMessage } from "../models/itemModel.js";
+import {
+  itemsByCategory,
+  postMessage,
+  getMessage,
+  deleteMessage,
+} from "../models/itemModel.js";
 
 export const itemController = async (req, res) => {
   //console.log(req.params);
@@ -13,6 +18,20 @@ export const itemController = async (req, res) => {
   }
 };
 
+// Contact us Message
+// Get request
+
+export const getMessageController = async (req, res) => {
+  try {
+    const { rows: messages } = await getMessage();
+    return res.json(messages);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+// Post request
 export const contactUsController = async (req, res) => {
   const user = {
     name: req.body.name,
@@ -22,8 +41,21 @@ export const contactUsController = async (req, res) => {
   };
 
   try {
-    const userInfo = await contactMessage(user);
+    const userInfo = await postMessage(user);
     res.json(userInfo.rows[0]);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+//not working
+export const deleteMessageController = async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  try {
+    await deleteMessage(id);
+    res.send({ status: "success" });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ error });

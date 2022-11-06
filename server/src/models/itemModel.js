@@ -30,13 +30,24 @@ ORDER BY C.ID ASC;`
 };
 
 // FOR CONTACT PAGE
-export const contactMessage = async (user) => {
-  const insertQuery = `INSERT INTO contact(name, email, phone_number, message) 
+// get query
+export const getMessage = async () => {
+  const getQuery = `SELECT * FROM message`;
+  return await db.query(getQuery);
+};
+
+// post query
+export const postMessage = async (user) => {
+  const insertQuery = `INSERT INTO message(name, email, phone_number, message) 
                  VALUES($1, $2, $3, $4)
                  RETURNING *`;
   const values = [user.name, user.email, user.phoneNumber, user.message];
 
-  const result = await db.query(insertQuery, values);
+  return await db.query(insertQuery, values);
+};
 
-  return result;
+// Delete query // not working
+export const deleteMessage = async (id) => {
+  debugger;
+  return await db.query(`DELETE FROM message WHERE id = $1`, [id]);
 };
