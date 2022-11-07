@@ -6,9 +6,6 @@ import {
 } from "../models/itemModel.js";
 
 export const itemController = async (req, res) => {
-  //console.log(req.params);
-  //debugger;
-
   try {
     const item = await itemsByCategory();
     res.json(item);
@@ -19,8 +16,8 @@ export const itemController = async (req, res) => {
 };
 
 // Contact us Message
-// Get request
 
+// Get request
 export const getMessageController = async (req, res) => {
   try {
     const { rows: messages } = await getMessage();
@@ -32,7 +29,7 @@ export const getMessageController = async (req, res) => {
 };
 
 // Post request
-export const contactUsController = async (req, res) => {
+export const postMessageController = async (req, res) => {
   const user = {
     name: req.body.name,
     email: req.body.email,
@@ -50,6 +47,7 @@ export const contactUsController = async (req, res) => {
   }
 };
 
+// Delete request
 export const deleteMessageController = async (req, res) => {
   const id = parseInt(req.params.id);
 

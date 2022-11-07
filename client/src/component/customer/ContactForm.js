@@ -89,7 +89,7 @@ function ContactForm() {
                   pointerEvents="none"
                   children={<MdOutlineEmail color="gray.800" />}
                 />
-                {/* <Input type="email" size="md" onChange={onChangeHandler} /> */}
+
                 <Input
                   id="email"
                   name="email"
@@ -151,9 +151,6 @@ function ContactForm() {
           </VStack>
         </form>
       </Box>
-      {/* <Box as="pre" marginY={10}>
-        {JSON.stringify(values, null, 2)}
-      </Box> */}
     </Box>
   );
 }

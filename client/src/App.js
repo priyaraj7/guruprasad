@@ -1,8 +1,10 @@
-import "./App.css";
-import { ChakraProvider, CSSReset } from "@chakra-ui/react";
+// import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { ChakraProvider, CSSReset } from "@chakra-ui/react";
+
+// COMPONENTS
+
 import Header, { ADMIN_LINKS, CUSTOMER_LINKS } from "./component/Header";
-// import CustomerPage from "./component/customer/CustomerPage.js";
 import AdminPage from "./component/admin/AdminPage";
 import MessagesPage from "./component/admin/MessagesPage";
 import Menu from "./component/customer/Menu";
@@ -15,7 +17,7 @@ function App() {
   return (
     <ChakraProvider>
       <CSSReset />
-      {/* <CustomerPage /> */}
+
       <Header links={isAdmin ? ADMIN_LINKS : CUSTOMER_LINKS} />
       <Routes>
         <Route index element={<Menu />} />
