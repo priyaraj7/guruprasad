@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Container,
   Flex,
@@ -11,7 +10,7 @@ import {
   WrapItem,
   Link,
 } from "@chakra-ui/react";
-import { MdPhone, MdLocationOn, MdOutlineEmail } from "react-icons/md";
+import { MdPhone, MdLocationOn } from "react-icons/md";
 
 import ContactForm from "./ContactForm";
 

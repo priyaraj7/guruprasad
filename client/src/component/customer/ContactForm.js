@@ -1,33 +1,20 @@
-import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 
 import {
-  Container,
-  Flex,
   Box,
-  Heading,
-  Text,
   Button,
   VStack,
-  Wrap,
-  WrapItem,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
   Textarea,
-  Link,
 } from "@chakra-ui/react";
-import { MdPhone, MdLocationOn, MdOutlineEmail } from "react-icons/md";
+import { MdOutlineEmail } from "react-icons/md";
 import { BsPerson, BsPhone } from "react-icons/bs";
 
 import { postUserMessage } from "../../api/menuListApi";
-
-/*
-props:
-      AddMessageOnSubmit  => Admin/Messages.js component
-*/
 
 // A custom validation function. This must return an object
 // which keys are symmetrical to our values/initialValues
@@ -52,26 +39,7 @@ const validate = (values) => {
   return errors;
 };
 
-function ContactForm({ values, AddMessageOnSubmit }) {
-  // const [inputValues, setInputValues] = useState(values);
-
-  // useEffect(() => {
-  //   setInputValues(values);
-  // }, [values]);
-
-  // function onChangeHandler(event) {
-  //   const value = event.target.value;
-  //   console.log("new value", event.target.value);
-  //   setInputValues({
-  //     ...inputValues,
-  //     [event.target.name]: value,
-  //   });
-  // }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   AddMessageOnSubmit(inputValues);
-  // }
+function ContactForm() {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
   const formik = useFormik({
@@ -83,9 +51,9 @@ function ContactForm({ values, AddMessageOnSubmit }) {
     },
     validate,
     onSubmit: (values) => {
-      console.log(values, "va");
-      alert(JSON.stringify(values, null, 2));
-      debugger;
+      // console.log(values, "va");
+      // alert(JSON.stringify(values, null, 2));
+      // debugger;
       postUserMessage(values);
     },
   });

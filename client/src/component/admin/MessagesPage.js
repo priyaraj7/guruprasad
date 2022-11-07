@@ -9,20 +9,10 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import {
-  getMessages,
-  postUserMessage,
-  deleteMessages,
-} from "../../api/menuListApi";
+import { getMessages, deleteMessages } from "../../api/menuListApi";
 
 function MessagesPage() {
   const [userMessages, setUserMessages] = useState([]);
-
-  //   function AddMessageOnSubmit(newMessage) {
-  //     const response = postUserMessage(newMessage);
-
-  //     setUserMessages([...userMessages, response]);
-  //   }
 
   const getMessageList = async () => {
     setUserMessages(await getMessages());
