@@ -9,12 +9,6 @@ import {
   VStack,
   Wrap,
   WrapItem,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Textarea,
   Link,
 } from "@chakra-ui/react";
 import { MdPhone, MdLocationOn, MdOutlineEmail } from "react-icons/md";

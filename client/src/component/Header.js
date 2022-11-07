@@ -19,7 +19,40 @@ import { HamburgerIcon, CloseIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 import { Link as RouteLink } from "react-router-dom";
 
-export default function Header() {
+export const CUSTOMER_LINKS = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Menu",
+    href: "/",
+  },
+  {
+    label: "Contact Us",
+    href: "/contact",
+  },
+  {
+    label: "Reviews",
+    href: "/reviews",
+  },
+  {
+    label: "Cart",
+    href: "/cart",
+  },
+];
+
+export const ADMIN_LINKS = [
+  {
+    label: "Home",
+    href: "/admin",
+  },
+  {
+    label: "Messages",
+    href: "/admin/messages",
+  },
+];
+export default function Header({ links }) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -59,7 +92,7 @@ export default function Header() {
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
+            <DesktopNav links={links} />
           </Flex>
         </Flex>
 
@@ -95,20 +128,20 @@ export default function Header() {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav links={links} />
       </Collapse>
     </Box>
   );
 }
 
-const DesktopNav = () => {
+const DesktopNav = ({ links }) => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
     <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
+      {links.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -189,14 +222,14 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
   );
 };
 
-const MobileNav = () => {
+const MobileNav = ({ links }) => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
       p={4}
       display={{ md: "none" }}
     >
-      {NAV_ITEMS.map((navItem) => (
+      {links.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
@@ -236,26 +269,3 @@ const MobileNavItem = ({ label, href }) => {
 //   children?: Array<NavItem>;
 //   href?: string;
 // }
-
-const NAV_ITEMS = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Menu",
-    href: "/",
-  },
-  {
-    label: "Contact Us",
-    href: "/contact",
-  },
-  {
-    label: "Reviews",
-    href: "/reviews",
-  },
-  {
-    label: "Cart",
-    href: "/cart",
-  },
-];
