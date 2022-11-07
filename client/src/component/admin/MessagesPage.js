@@ -15,7 +15,7 @@ import {
   deleteMessages,
 } from "../../api/menuListApi";
 
-function MessageComponent() {
+function MessagesPage() {
   const [userMessages, setUserMessages] = useState([]);
 
   //   function AddMessageOnSubmit(newMessage) {
@@ -94,4 +94,4 @@ function MessageComponent() {
   );
 }
 
-export default MessageComponent;
+export default MessagesPage;
