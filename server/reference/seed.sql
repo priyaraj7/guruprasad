@@ -50,6 +50,23 @@ ALTER TABLE item
   ALTER COLUMN active SET DEFAULT TRUE;
 
 
+  CREATE TABLE message(
+   id serial PRIMARY KEY,
+   name VARCHAR (255) NOT NULL,
+   email VARCHAR (255) NOT NULL,
+  phone_number TEXT,
+  message VARCHAR  NOT NULL,
+  messaged_at TIMESTAMP DEFAULT NOW(),
+  read BOOLEAN DEFAULT FALSE
+);
+
+ALTER TABLE contact 
+ADD COLUMN messaged_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE contact 
+ADD COLUMN read BOOLEAN DEFAULT FALSE;
+
+ALTER TABLE contact
+RENAME TO message; 
 -- QUERY
 
 select item.id, item.category_id,item.item_name, item.price, item.active, category.category_name from item inner Join category on item.category_id = category.id WHERE category_id = 4;
