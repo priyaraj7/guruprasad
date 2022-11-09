@@ -68,7 +68,7 @@ export default function Header({ links, isAdminPage }) {
         await (isAuthenticated
           ? buildLogoutUrl()
           : buildAuthorizeUrl({
-              audience: "https://www.guruprasad-api.com", // fectch this from env
+              audience: process.env.REACT_APP_AUDIENCE,
             }))
       );
     })();
@@ -282,10 +282,3 @@ const MobileNavItem = ({ label, href }) => {
     </Stack>
   );
 };
-
-// interface NavItem {
-//   label: string;
-//   subLabel?: string;
-//   children?: Array<NavItem>;
-//   href?: string;
-// }
