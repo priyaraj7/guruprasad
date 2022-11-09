@@ -15,9 +15,13 @@ export const getAllItem = async () => {
 };
 
 // Get Message API
-export const getMessages = async () => {
+export const getMessages = async (token) => {
   try {
-    const response = await fetch(`/api/message`);
+    const response = await fetch(`/api/message`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
     return await response.json();
   } catch (error) {
     console.log(error);
@@ -44,10 +48,15 @@ export const postUserMessage = async (message) => {
 
 // Delete Message API
 
-export const deleteMessages = async (id) => {
+export const deleteMessages = async (id, token) => {
   try {
-    const response = await fetch(`/api/message/${id}`, { method: "DELETE" });
-    await response.json();
+    const response = await fetch(`/api/message/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      method: "DELETE",
+    });
+    return response.json();
   } catch (error) {
     console.log(error);
     return error;

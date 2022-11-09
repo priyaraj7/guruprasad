@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { Link as RouteLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import {
   Box,
   Flex,
@@ -16,8 +20,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from "@chakra-ui/icons";
-
-import { Link as RouteLink } from "react-router-dom";
 
 export const CUSTOMER_LINKS = [
   {
@@ -48,12 +50,29 @@ export const ADMIN_LINKS = [
     href: "/admin",
   },
   {
+    label: "Menu",
+    href: "/admin/menu",
+  },
+  {
     label: "Messages",
     href: "/admin/messages",
   },
 ];
-export default function Header({ links }) {
+export default function Header({ links, isAdminPage }) {
   const { isOpen, onToggle } = useDisclosure();
+  const { isAuthenticated, buildLogoutUrl, buildAuthorizeUrl } = useAuth0();
+  const [authUrl, setAuthUrl] = useState("");
+  useEffect(() => {
+    (async () => {
+      setAuthUrl(
+        await (isAuthenticated
+          ? buildLogoutUrl()
+          : buildAuthorizeUrl({
+              audience: "https://www.guruprasad-api.com", // fectch this from env
+            }))
+      );
+    })();
+  }, [isAuthenticated]);
 
   return (
     <Box>
@@ -95,36 +114,37 @@ export default function Header({ links }) {
             <DesktopNav links={links} />
           </Flex>
         </Flex>
-
-        {/* <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
+        {isAdminPage ? (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            Sign In
-          </Button>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button>
-        </Stack> */}
+            <Button
+              as={"a"}
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+              href={authUrl}
+            >
+              {isAuthenticated ? "Sign Out" : "Sign In"}
+            </Button>
+            {/* <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"pink.400"}
+              href={"#"}
+              _hover={{
+                bg: "pink.300",
+              }}
+            >
+              Sign Up
+            </Button> */}
+          </Stack>
+        ) : null}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
