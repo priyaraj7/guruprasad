@@ -6,17 +6,17 @@ export const AdminContext = createContext(null);
 
 function AdminPage() {
   const { getAccessTokenSilently } = useAuth0();
-  const [token, setToken] = useState(null);
+  const [tokenData, setTokenData] = useState(null);
   useEffect(() => {
     (async () => {
       const audience = process.env.REACT_APP_AUDIENCE;
-      const t = await getAccessTokenSilently({ audience });
-      setToken(t);
+      const token = await getAccessTokenSilently({ audience });
+      setTokenData(token);
     })();
   });
   return (
     <>
-      <AdminContext.Provider value={token}>
+      <AdminContext.Provider value={tokenData}>
         <div>Admin page</div>
         {/* The Outlet component will always render the next match.  */}
         <Outlet />
