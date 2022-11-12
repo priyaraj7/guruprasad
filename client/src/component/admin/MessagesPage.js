@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import {
   Box,
   Text,
@@ -9,22 +10,26 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
+// Components
+import { AdminContext } from "./AdminPage";
+// API
 import { getMessages, deleteMessages } from "../../api/menuListApi";
 
 function MessagesPage() {
   const [userMessages, setUserMessages] = useState([]);
+  const token = useContext(AdminContext);
 
-  const getMessageList = async () => {
-    setUserMessages(await getMessages());
-  };
   useEffect(() => {
+    const getMessageList = async () => {
+      if (token) setUserMessages(await getMessages(token));
+    };
     getMessageList();
-  }, []);
+  }, [token]);
   const toast = useToast();
 
   const deleteMessage = async (id) => {
-    const result = await deleteMessages(id);
-    if (result && result.success) {
+    const result = await deleteMessages(id, token);
+    if (result && result.status === "success") {
       const removeMsg = userMessages.filter((msg) => msg.id !== id);
       setUserMessages(removeMsg);
     } else {
@@ -37,7 +42,7 @@ function MessagesPage() {
     }
   };
 
-  console.log("mesg", userMessages);
+  // console.log("mesg", userMessages);
   return (
     <>
       {userMessages.map((message) => {
@@ -84,4 +89,4 @@ function MessagesPage() {
   );
 }
 
-export default MessagesPage;
+export default withAuthenticationRequired(MessagesPage);

@@ -50,11 +50,12 @@ function ContactForm() {
       message: "",
     },
     validate,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       // console.log(values, "va");
       // alert(JSON.stringify(values, null, 2));
       // debugger;
       postUserMessage(values);
+      resetForm({ values: "" });
     },
   });
   console.log(formik);
