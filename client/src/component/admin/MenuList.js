@@ -11,69 +11,105 @@ import {
   Box,
   useColorModeValue,
   Center,
+  Flex,
+  Text,
+  VStack,
+  Icon,
+  Td,
+  Tooltip,
 } from "@chakra-ui/react";
+import { FaRupeeSign } from "react-icons/fa";
 
-function MenuList({ itemData, toggleStatus, handleChange, onClickEditItem }) {
+import { EditIcon, AddIcon } from "@chakra-ui/icons";
+
+function MenuList({
+  itemData,
+  toggleStatus,
+  handleChange,
+  handleOnClickEditItem,
+  handleOnAddClick,
+}) {
   const tableHeader = [
-    ["Item Name", "itemname"],
-    ["Price", "price"],
-    ["Status", "active"],
-    ["Category Name", "categoryname"],
-    ["Description", "description"],
-    ["Edit", "edit"],
+    "Item",
+    "Price",
+    "Category Name",
+    "Description",
+    "Actions",
   ];
   return (
     <>
       <Box
-        border="2px"
         p={4}
-        w={"full"}
+        mx="20"
         bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
         rounded={"md"}
       >
-        <Center>
-          <Button size="md" height="48px" width="200px" rounded={"full"}>
-            Add item
-          </Button>
-          <Input
-            variant="outline"
-            width={500}
+        <Flex>
+          <Center flex="1">
+            <Input
+              variant="outline"
+              width={500}
+              rounded={"full"}
+              border={0}
+              bg={useColorModeValue("gray.200", "gray.800")}
+              type="text"
+              placeholder="Search by Item Name or Category..."
+              onChange={handleChange}
+            />
+          </Center>
+          <Button
+            onClick={handleOnAddClick}
+            size="md"
+            variant={"link"}
             rounded={"full"}
-            border={0}
-            bg={useColorModeValue("gray.200", "gray.800")}
-            type="text"
-            placeholder="Search by Item Name or Category..."
-            onChange={handleChange}
-          />
-        </Center>
+          >
+            <VStack>
+              <AddIcon color="blue.500" />
+              <Text color="blue.500">Add Item</Text>
+            </VStack>
+          </Button>
+        </Flex>
         <TableContainer overflow-x="auto" overflow-y="hidden">
-          <Table variant="striped" colorScheme="blue" size="md">
-            <Thead>
+          <Table variant="striped" colorScheme="gray" size="md">
+            <Thead fontWeights="900">
               <Tr>
-                {tableHeader.map((header) => (
-                  <Th key={header[1]}>{header[0]} </Th>
+                {tableHeader.map((header, index) => (
+                  <Th
+                    textAlign={
+                      index === tableHeader.length - 1 ? "right" : "left"
+                    }
+                    key={header}
+                  >
+                    {header}{" "}
+                  </Th>
                 ))}
               </Tr>
             </Thead>
             <Tbody>
               {itemData.map((item) => (
                 <Tr key={item.id}>
-                  <Th>{item.itemname}</Th>
-                  <Th>{item.price}</Th>
-                  <Th>
+                  <Td>{item.itemname}</Td>
+                  <Td>
+                    <Icon as={FaRupeeSign} />
+                    {item.price.toFixed(2)}
+                  </Td>
+                  <Td>{item.categoryname}</Td>
+                  <Td>{item.description}</Td>
+                  <Td textAlign="right" maxW="10%">
                     <Switch
                       isChecked={item.active}
-                      colorScheme="teal"
+                      colorScheme="blue"
                       size="lg"
                       onChange={() => toggleStatus(item.id)}
                     />
-                  </Th>
-                  <Th>{item.categoryname}</Th>
-                  <Th>{item.description}</Th>
-                  <Th>
-                    <Button onClick={() => onClickEditItem(item)}>Edit</Button>
-                  </Th>
+
+                    <Button
+                      onClick={() => handleOnClickEditItem(item)}
+                      variant="link"
+                    >
+                      <EditIcon color="blue.500" />
+                    </Button>
+                  </Td>
                 </Tr>
               ))}
             </Tbody>

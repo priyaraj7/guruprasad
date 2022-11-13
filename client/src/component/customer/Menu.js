@@ -131,7 +131,7 @@ export default function Menu() {
                           <Spacer />
 
                           <Button
-                            colorScheme="teal"
+                            colorScheme="blue"
                             onClick={() => handleAddTOCart(item)}
                           >
                             Add To cart

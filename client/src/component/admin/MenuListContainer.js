@@ -24,6 +24,7 @@ function MenuListContainer() {
   const initialFormState = { itemname: "", price: "", categoryId: "" };
   const [currentItem, setCurrentItem] = useState(initialFormState);
   const token = useContext(AdminContext);
+  const [isFormVisible, setFormVisible] = useState(false);
 
   const toast = useToast();
 
@@ -40,11 +41,12 @@ function MenuListContainer() {
   const addNewItem = async (newItem) => {
     const content = await addItem(newItem, token);
     setItemData([...itemData, content]);
+    setFormVisible(false);
   };
 
   const onClickEditItem = (item) => {
-    // debugger;
     setIsEditing(true);
+    setFormVisible(true);
     setCurrentItem({ ...item });
   };
   console.log(currentItem);
@@ -53,7 +55,6 @@ function MenuListContainer() {
 
   // console.log(updateItem, "item");
   const handleEditSubmit = async (updatedItem) => {
-    debugger;
     console.log(updatedItem, "update");
     updateItem(currentItem.id, updatedItem);
     console.log(updateItem(currentItem.id, updatedItem), "fn");
@@ -64,6 +65,7 @@ function MenuListContainer() {
     // setCurrentItem(initialFormState);
     setCurrentItem(result);
     setIsEditing(false);
+    setFormVisible(false);
   };
 
   const toggleStatus = async (id) => {
@@ -106,7 +108,10 @@ function MenuListContainer() {
         //     .startsWith(searchValue.substring(0, correctIndex));
         // }
         return (
-          item.itemname.toLocaleLowerCase().startsWith(searchValue) ||
+          item.itemname
+            .toLocaleLowerCase()
+            .split(" ")
+            .some((word) => word.startsWith(searchValue)) ||
           item.categoryname.toLowerCase().startsWith(searchValue)
         );
       });
@@ -127,19 +132,18 @@ function MenuListContainer() {
         itemData={filteredItemData}
         toggleStatus={toggleStatus}
         handleChange={handleChange}
-        onClickEditItem={onClickEditItem}
+        handleOnClickEditItem={onClickEditItem}
+        handleOnAddClick={() => {
+          setFormVisible(true);
+          setCurrentItem(initialFormState);
+        }}
       />
-      {isEditing ? (
+      {isFormVisible && (
         <MenuForm
-          handleItem={handleEditSubmit}
+          handleItem={isEditing ? handleEditSubmit : addNewItem}
           values={currentItem}
-          buttonText="Update"
-        />
-      ) : (
-        <MenuForm
-          handleItem={addNewItem}
-          values={initialFormState}
-          buttonText="Add"
+          buttonText={isEditing ? "Update" : "Add"}
+          handleClose={() => setFormVisible(false)}
         />
       )}
     </>

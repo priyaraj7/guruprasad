@@ -4,15 +4,19 @@ import {
   FormLabel,
   Select,
   Input,
-  Checkbox,
   Container,
   Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 
-function MenuForm({ handleItem, values, buttonText }) {
-  // const defaultValue = { name: "", price: "", categoryId: "" };
+function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
   const [inputValues, setInputValues] = useState(values);
-
   useEffect(() => {
     setInputValues(values);
   }, [values]);
@@ -39,64 +43,63 @@ function MenuForm({ handleItem, values, buttonText }) {
     { label: "Beverage", value: "4" },
   ];
 
-  return (
-    <Container>
-      <form onSubmit={handleSubmit}>
-        <FormControl onSubmit={handleSubmit} isRequired>
-          <FormLabel htmlFor="item-name">Item name</FormLabel>
-          <Input
-            id="item-name"
-            name="itemname"
-            value={inputValues.itemname}
-            onChange={handleChange}
-          />
+  const selectedCategory = options.find(
+    (op) => op.label === inputValues.categoryname
+  );
 
-          <FormLabel htmlFor="price">Price</FormLabel>
-          <Input
-            id="price"
-            name="price"
-            value={inputValues.price}
-            onChange={handleChange}
-          />
-          <FormLabel htmlFor="price">Select Category</FormLabel>
-          <Select
-            placeholder="Select option"
-            name="categoryId"
-            onChange={handleChange}
-          >
-            {options.map((option) => (
-              <option
-                key={option.value}
-                selected={inputValues.categoryId === option.value}
-                value={option.value}
-              >
-                {option.label}
-              </option>
-            ))}
-          </Select>
-          {/* <FormLabel htmlFor="status">Check the status</FormLabel>
-        <Checkbox
-          colorScheme="green"
-          value="status"
-          name="status"
-          // isChecked={inputValues.status}
-          // onChange={handleChange}
-        >
-          Active
-        </Checkbox> */}
-          <br />
-          <Button
-            colorScheme="blue"
-            type="submit"
-            // onClick={() => {
-            //   onSave(inputValues);
-            // }}
-          >
-            Submit
-          </Button>
-        </FormControl>
-      </form>
-    </Container>
+  return (
+    <Modal isOpen={true} onClose={handleClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <form onSubmit={handleSubmit}>
+          <ModalHeader>{buttonText} Menu Item</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Container>
+              <FormControl onSubmit={handleSubmit} isRequired>
+                <FormLabel htmlFor="item-name">Item name</FormLabel>
+                <Input
+                  id="item-name"
+                  name="itemname"
+                  value={inputValues.itemname}
+                  onChange={handleChange}
+                />
+
+                <FormLabel htmlFor="price">Price</FormLabel>
+                <Input
+                  id="price"
+                  name="price"
+                  value={inputValues.price}
+                  onChange={handleChange}
+                />
+                <FormLabel htmlFor="price">Select Category</FormLabel>
+                <Select
+                  placeholder="Select option"
+                  name="categoryId"
+                  value={(selectedCategory || {}).value}
+                  onChange={handleChange}
+                >
+                  {options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            </Container>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" type="submit">
+              {buttonText}
+            </Button>
+            <Button variant="ghost" onClick={handleClose}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </form>
+      </ModalContent>
+    </Modal>
   );
 }
 
