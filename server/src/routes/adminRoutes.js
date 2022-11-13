@@ -18,18 +18,22 @@ const jwtCheck = expressjwt({
 });
 
 import {
-  itemController,
-  postMessageController,
+  getItemController,
+  addItemController,
+  toggleStatusController,
   getMessageController,
   deleteMessageController,
-} from "../controller/itemController.js";
+  updateItemController,
+} from "../controller/adminController.js";
 
 const router = express.Router();
 
-router.get("/menu", itemController);
+router.get("/menu", jwtCheck, getItemController);
+router.post("/menu/", jwtCheck, addItemController);
+router.put("/menu/:id/status", jwtCheck, toggleStatusController);
+router.put("/menu/:id", jwtCheck, updateItemController);
 
 router.get("/message", jwtCheck, getMessageController);
-router.post("/message", postMessageController);
 router.delete("/message/:id", jwtCheck, deleteMessageController);
 
 export default router;

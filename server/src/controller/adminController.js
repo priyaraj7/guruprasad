@@ -1,0 +1,89 @@
+import {
+  getAllItem,
+  addItem,
+  toggleActiveStatus,
+  updateItem,
+  getMessage,
+  deleteMessage,
+} from "../models/adminModel.js";
+
+export const getItemController = async (req, res) => {
+  try {
+    const item = await getAllItem();
+    return res.json(item);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+// Post request
+export const addItemController = async (req, res) => {
+  const categoryId = Number.parseInt(req.body.categoryId, 10);
+  console.log(categoryId);
+  const newItem = {
+    itemName: req.body.itemname,
+    price: req.body.price,
+    categoryId: categoryId,
+  };
+
+  try {
+    const item = await addItem(newItem);
+    res.json(item.rows[0]);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+export const toggleStatusController = async (req, res) => {
+  const id = Number.parseInt(req.params.id, 10);
+  console.log(id);
+
+  try {
+    const item = await toggleActiveStatus(id);
+    res.json(item.rows[0]);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+// need to check
+export const updateItemController = async (req, res) => {
+  const id = Number.parseInt(req.params.id, 10);
+  const items = req.body;
+  console.log(items);
+
+  try {
+    const item = await updateItem(id, items);
+    res.json(item.rows[0]);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+// Get request Message
+export const getMessageController = async (req, res) => {
+  try {
+    const { rows: messages } = await getMessage();
+    return res.json(messages);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};
+
+// Delete request
+export const deleteMessageController = async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  try {
+    await deleteMessage(id);
+    res.send({ status: "success" });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+};

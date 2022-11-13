@@ -2,9 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import itemRouter from "./src/routes/itemRoutes.js";
+import itemRouter from "./src/routes/customerRoutes.js";
+import adminRouter from "./src/routes/adminRoutes.js";
 import googleAPIrouter from "./api/googleApi.js";
-import { initDb } from "./src/models/itemModel.js";
+
+import { initDb } from "./src/models/customerModel.js";
 
 const app = express();
 app.use(express.json()); // body parser
@@ -21,6 +23,7 @@ app.get("/", (req, res) => {
 
 app.use("/place", googleAPIrouter);
 app.use("/api", itemRouter);
+app.use("/admin", adminRouter);
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
