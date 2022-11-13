@@ -21,6 +21,8 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
+import Logo from "./Logo";
+
 export const CUSTOMER_LINKS = [
   {
     label: "Home",
@@ -102,13 +104,14 @@ export default function Header({ links, isAdminPage }) {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
+          {/* <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
             GURUPRASAD
-          </Text>
+          </Text> */}
+          <Logo />
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav links={links} />

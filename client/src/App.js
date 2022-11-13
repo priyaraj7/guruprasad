@@ -11,6 +11,7 @@ import MessagesPage from "./component/admin/MessagesPage";
 import Menu from "./component/customer/Menu";
 import ContactPage from "./component/customer/ContactPage";
 import ReviewPage from "./component/customer/ReviewPage";
+import Footer from "./component/Footer";
 
 function App() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function App() {
           <Route path="menu" element={<MenuList />} />
         </Route>
       </Routes>
+      <Footer />
     </ChakraProvider>
   );
 }
