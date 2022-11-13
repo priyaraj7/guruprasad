@@ -90,11 +90,12 @@ export default function Header({ links, isAdminPage }) {
         align={"center"}
       >
         <Flex
-          flex={{ base: 1, md: "auto" }}
+          flex={{ base: 0, md: "auto" }}
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
         >
           <IconButton
+            flex="0"
             onClick={onToggle}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -103,7 +104,10 @@ export default function Header({ links, isAdminPage }) {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start", sm: "center" }}
+        >
           {/* <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
