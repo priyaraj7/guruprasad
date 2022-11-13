@@ -72,14 +72,3 @@ export const getMessage = async () => {
 export const deleteMessage = async (id) => {
   return await db.query(`DELETE FROM message WHERE id = $1`, [id]);
 };
-
-// export const editItem = async (itemId) => {
-//   const editQuery = `UPDATE
-//       item
-//       SET item_name =$1, price= $2, active=$3)
-//     VALUES($ 1, $ 2, $ 3 )
-//         WHERE id = ${itemId}`;
-//   const values = [item.itemName, item.price, item.active];
-
-//   return await db.query(editQuery, values);
-// };

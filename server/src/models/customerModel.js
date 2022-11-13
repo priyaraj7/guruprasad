@@ -16,8 +16,7 @@ export const itemsByCategory = async () => {
         SELECT json_agg(json_build_object(
             'id', ID,
             'itemName', ITEM_NAME,
-            'price', PRICE,
-            'image', IMAGE
+            'price', PRICE       
         ))
         FROM ITEM
         WHERE

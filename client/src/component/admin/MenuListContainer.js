@@ -46,9 +46,6 @@ function MenuListContainer() {
     // debugger;
     setIsEditing(true);
     setCurrentItem({ ...item });
-    // setItemData(
-    //   itemData.map((item) => (item.id === updateItem.id ? updateItem : item))
-    // );
   };
   console.log(currentItem);
   const updateItem = (id, item) =>

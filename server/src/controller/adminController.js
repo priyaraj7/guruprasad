@@ -49,7 +49,7 @@ export const toggleStatusController = async (req, res) => {
   }
 };
 
-// need to check
+// update  item request
 export const updateItemController = async (req, res) => {
   const id = Number.parseInt(req.params.id, 10);
   const items = req.body;
