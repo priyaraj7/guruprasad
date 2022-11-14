@@ -19,7 +19,7 @@ export const getItemController = async (req, res) => {
 
 // Post request
 export const addItemController = async (req, res) => {
-  const categoryId = Number.parseInt(req.body.categoryId, 10);
+  const categoryId = Number(req.body.categoryId);
   console.log(categoryId);
   const newItem = {
     itemName: req.body.itemname,
