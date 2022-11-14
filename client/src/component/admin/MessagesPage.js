@@ -13,7 +13,7 @@ import {
 // Components
 import { AdminContext } from "./AdminPage";
 // API
-import { getMessages, deleteMessages } from "../../api/menuListApi";
+import { getMessages, deleteMessages } from "../../api/adminSideApi";
 
 function MessagesPage() {
   const [userMessages, setUserMessages] = useState([]);

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { getAllItem } from "../../api/menuListApi";
 
 import {
   Box,
@@ -16,6 +15,10 @@ import {
 } from "@chakra-ui/react";
 
 import { FaRupeeSign } from "react-icons/fa";
+
+import { getAllItem } from "../../api/menuListApi";
+
+import Cart from "./Cart";
 
 const ItemContent = ({ children }) => {
   return (
@@ -51,7 +54,39 @@ const ItemContent = ({ children }) => {
 
 export default function Menu() {
   const [menuList, setMenuList] = useState(null);
+  // Cart
+  const [cart, setCart] = useState([]);
+  console.log(cart);
 
+  const handleAddTOCart = (item) => {
+    // Button on click
+    // Update cart item quantity if already in cart
+    if (cart.some((cartItem) => cartItem.id === item.id)) {
+      setCart((cart) =>
+        cart.map((cartItem) =>
+          cartItem.id === item.id
+            ? {
+                ...cartItem,
+                amount: cartItem.amount + 1,
+              }
+            : cartItem
+        )
+      );
+      return;
+    }
+
+    // Add to cart
+    setCart((cart) => [
+      ...cart,
+      { ...item, amount: 1 }, // <-- initial amount 1
+    ]);
+  };
+
+  // const handleAddTOCart = (item) => {
+  //   setCart([...cart, item]);
+  // };
+
+  ////
   const getMenuList = async () => {
     setMenuList(await getAllItem());
   };
@@ -95,7 +130,12 @@ export default function Menu() {
                           </Box>
                           <Spacer />
 
-                          <Button colorScheme="teal">Order Now</Button>
+                          <Button
+                            colorScheme="blue"
+                            onClick={() => handleAddTOCart(item)}
+                          >
+                            Add To cart
+                          </Button>
                         </Flex>
                       </ItemContent>
                     </Box>
@@ -106,6 +146,7 @@ export default function Menu() {
           </Box>
         );
       })}
+      <Cart cart={cart} />
     </>
   ) : (
     <h1>Loading....</h1>

@@ -68,13 +68,14 @@ export default function Header({ links, isAdminPage }) {
     (async () => {
       setAuthUrl(
         await (isAuthenticated
-          ? buildLogoutUrl()
+          ? buildLogoutUrl() // this not to be waited
           : buildAuthorizeUrl({
+              // this returns a promise
               audience: process.env.REACT_APP_AUDIENCE,
             }))
       );
     })();
-  }, [isAuthenticated]);
+  }, [isAuthenticated]); // when isAuthenticated changes logIn changes to logOut viseversa
 
   return (
     <Box>
