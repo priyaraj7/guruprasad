@@ -1,12 +1,25 @@
-import {
+import initAdminModel from "../models/adminModel.js";
+import { initDBConnection } from "../../db/db-connection.js";
+
+const {
   getAllItem,
   addItem,
   toggleActiveStatus,
   updateItem,
   getMessage,
   deleteMessage,
-} from "../models/adminModel.js";
+} = initAdminModel(initDBConnection());
 
+// import getAdminModel from "../models/adminModel.js";
+
+// const {
+//   getAllItem,
+//   addItem,
+//   toggleActiveStatus,
+//   updateItem,
+//   getMessage,
+//   deleteMessage,
+// } = getAdminModel()
 export const getItemController = async (req, res) => {
   try {
     const item = await getAllItem();

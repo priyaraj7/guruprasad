@@ -1,5 +1,7 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
 import cors from "cors";
 
 import itemRouter from "./src/routes/customerRoutes.js";
@@ -11,7 +13,7 @@ import { initDb } from "./src/models/customerModel.js";
 const app = express();
 app.use(express.json()); // body parser
 app.use(cors());
-dotenv.config();
+
 initDb();
 
 //Set the port that you want the server to run on

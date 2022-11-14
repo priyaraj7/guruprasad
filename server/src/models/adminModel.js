@@ -1,13 +1,13 @@
-import { initDBConnection } from "../../db/db-connection.js";
+//import { initDBConnection } from "../../db/db-connection.js";
 
-let db;
+// let db;
 
 // This function is because I got the error query is undefined
-function ensureDb() {
-  if (!db) {
-    db = initDBConnection();
-  }
-}
+// function ensureDb() {
+//   if (!db) {
+//     db = initDBConnection();
+//   }
+// }
 
 const frontendDataQuery = `SELECT
  item.id,
@@ -20,55 +20,100 @@ from
  item
  left join category on category_id = category.id;`;
 
-export const getAllItem = async () => {
-  ensureDb();
-  // debugger;
-  // console.log(db);
-  const { rows: items } = await db.query(frontendDataQuery);
+export default function (db) {
+  return {
+    getAllItem: async () => {
+      debugger;
+      const { rows: items } = await db.query(frontendDataQuery);
 
-  return items;
-};
+      return items;
+    },
 
-export const addItem = async (item) => {
-  ensureDb();
-  // https://stackoverflow.com/questions/59232370/adding-a-left-join-on-a-insert-into-returning
-  /* A WITH query allows a record returned from an initial query, 
-  including data returned from a RETURNING clause, which is stored in a 
-  temporary table that can be accessed in the expression that follows 
-  it to continue work on it, including using a JOIN expression. */
-  const insertQuery = `
-  with item as (INSERT INTO
-    item(item_name, price, category_id)
-  VALUES($1, $2, $3) RETURNING *)   
-  ${frontendDataQuery}`;
-  const values = [item.itemName, item.price, item.categoryId];
+    addItem: async (item) => {
+      const insertQuery = `
+    with item as (INSERT INTO
+      item(item_name, price, category_id)
+    VALUES($1, $2, $3) RETURNING *)   
+    ${frontendDataQuery}`;
+      const values = [item.itemName, item.price, item.categoryId];
 
-  // console.log(`query ====> ${insertQuery}`);
-  return await db.query(insertQuery, values);
-};
+      // console.log(`query ====> ${insertQuery}`);
+      return await db.query(insertQuery, values);
+    },
+    toggleActiveStatus: async (id) => {
+      // debugger;
+      return await db.query(
+        `UPDATE item SET active = NOT active WHERE id = ${id} RETURNING *`
+      );
+    },
 
-export const toggleActiveStatus = async (id) => {
-  // debugger;
-  return await db.query(
-    `UPDATE item SET active = NOT active WHERE id = ${id} RETURNING *`
-  );
-};
+    updateItem: async (id, item) => {
+      const query = `Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *`;
+      const values = [item.itemname, item.price, item.categoryId, id];
+      return await db.query(query, values);
+    },
 
-export const updateItem = async (id, item) => {
-  const query = `Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *`;
-  const values = [item.itemname, item.price, item.categoryId, id];
-  return await db.query(query, values);
-};
+    getMessage: async () => {
+      // debugger;
+      const getQuery = `SELECT * FROM message`;
+      return await db.query(getQuery);
+    },
 
-// FOR CONTACT PAGE
-// get query
-export const getMessage = async () => {
-  // debugger;
-  const getQuery = `SELECT * FROM message`;
-  return await db.query(getQuery);
-};
+    deleteMessage: async (id) => {
+      return await db.query(`DELETE FROM message WHERE id = $1`, [id]);
+    },
+  };
+}
 
-// Delete query
-export const deleteMessage = async (id) => {
-  return await db.query(`DELETE FROM message WHERE id = $1`, [id]);
-};
+// export  const getAllItem = async () => {
+//   // ensureDb();
+//   // debugger;
+//   // console.log(db);
+//   const { rows: items } = await db.query(frontendDataQuery);
+
+//   return items;
+// };
+
+// export const addItem = async (item) => {
+//   ensureDb();
+//   // https://stackoverflow.com/questions/59232370/adding-a-left-join-on-a-insert-into-returning
+//   /* A WITH query allows a record returned from an initial query,
+//   including data returned from a RETURNING clause, which is stored in a
+//   temporary table that can be accessed in the expression that follows
+//   it to continue work on it, including using a JOIN expression. */
+//   const insertQuery = `
+//   with item as (INSERT INTO
+//     item(item_name, price, category_id)
+//   VALUES($1, $2, $3) RETURNING *)
+//   ${frontendDataQuery}`;
+//   const values = [item.itemName, item.price, item.categoryId];
+
+//   // console.log(`query ====> ${insertQuery}`);
+//   return await db.query(insertQuery, values);
+// };
+
+// export const toggleActiveStatus = async (id) => {
+//   // debugger;
+//   return await db.query(
+//     `UPDATE item SET active = NOT active WHERE id = ${id} RETURNING *`
+//   );
+// };
+
+// export const updateItem = async (id, item) => {
+//   const query = `Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *`;
+//   const values = [item.itemname, item.price, item.categoryId, id];
+//   return await db.query(query, values);
+// };
+
+// // FOR CONTACT PAGE
+// // get query
+// export const getMessage = async () => {
+//   // debugger;
+//   const getQuery = `SELECT * FROM message`;
+//   return await db.query(getQuery);
+// };
+
+// // Delete query
+// export const deleteMessage = async (id) => {
+//   return await db.query(`DELETE FROM message WHERE id = $1`, [id]);
+// };
