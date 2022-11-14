@@ -16,7 +16,7 @@ export const itemsByCategory = async () => {
         SELECT json_agg(json_build_object(
             'id', ID,
             'itemName', ITEM_NAME,
-            'price', PRICE
+            'price', PRICE       
         ))
         FROM ITEM
         WHERE
@@ -30,23 +30,13 @@ ORDER BY C.ID ASC;`
 };
 
 // FOR CONTACT PAGE
-// get query
-export const getMessage = async () => {
-  const getQuery = `SELECT * FROM message`;
-  return await db.query(getQuery);
-};
 
 // post query
 export const postMessage = async (user) => {
-  const insertQuery = `INSERT INTO message(name, email, phone_number, message) 
-                 VALUES($1, $2, $3, $4)
-                 RETURNING *`;
+  const insertQuery = `INSERT INTO
+  message(name, email, phone_number, message)
+VALUES($1, $2, $3, $4) RETURNING *`;
   const values = [user.name, user.email, user.phoneNumber, user.message];
 
   return await db.query(insertQuery, values);
-};
-
-// Delete query
-export const deleteMessage = async (id) => {
-  return await db.query(`DELETE FROM message WHERE id = $1`, [id]);
 };
