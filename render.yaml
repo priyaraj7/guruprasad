@@ -1,11 +1,8 @@
 services:
-  - name: server
+  - type: web
+    name: api
+    env: docker
     plan: free
-    type: web
-    env: node
-    repo: https://github.com/priyaraj7/guruprasad
-    buildCommand: cd client && npm install && npm run build && cd ../server && npm install
-    startCommand: cd server && node ./node_modules/db-migrate/bin/db-migrate up && node server.js
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -15,4 +12,3 @@ services:
 databases:
   - name: guruprasad
     plan: free
-    ipAllowList: []
