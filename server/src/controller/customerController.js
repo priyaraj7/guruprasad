@@ -4,7 +4,7 @@ export const itemController = async (req, res) => {
   try {
     const item = await itemsByCategory();
     return res.json(item);
-  } catch (e) {
+  } catch (error) {
     console.log(error);
     return res.status(400).json({ error });
   }

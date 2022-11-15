@@ -7,7 +7,8 @@ export const initDBConnection = () => {
   console.log(process.env.DATABASE_URL, "url");
   if (!db) {
     db = new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString:
+        process.env.DATABASE_URL || "postgres://localhost:5432/guruprasad",
     });
   }
   return db;
