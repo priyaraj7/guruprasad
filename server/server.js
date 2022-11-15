@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
   // res.json({ message: "Hello from ExpressJS" });
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
+app.use(express.static(REACT_BUILD_DIR));
 
 app.use("/place", googleAPIrouter);
 app.use("/api", itemRouter);
