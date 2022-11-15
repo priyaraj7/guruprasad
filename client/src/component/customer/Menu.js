@@ -131,7 +131,8 @@ export default function Menu() {
                           <Spacer />
 
                           <Button
-                            colorScheme="blue"
+                            colorScheme="red"
+                            variant="solid"
                             onClick={() => handleAddTOCart(item)}
                           >
                             Add To cart
@@ -152,30 +153,3 @@ export default function Menu() {
     <h1>Loading....</h1>
   );
 }
-
-//   const getCategory = async (id) => setItem(await getAllItem(id));
-//   useEffect(() => {
-//     category.forEach(getCategory);
-//   }, [category]);
-
-//   useEffect(() => {
-//     let controller = new AbortController();
-//     debugger;
-//     (async (id) => {
-//       try {
-//         const url = new URL("/api/getByCategories", document.location);
-//         [1, 2, 3, 4].forEach((id) => url.searchParams.append("categoryId", id));
-//         const response = await fetch(url.toString(), {
-//           signal: controller.signal,
-//         });
-//         setItem(await response.json());
-//         controller = null;
-//       } catch (e) {
-//         // Handle fetch error
-//         console.log(e);
-//       }
-//     })();
-//     return () => controller?.abort;
-//   }, []);
-
-//console.log(item);
