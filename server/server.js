@@ -24,14 +24,13 @@ const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "build");
 const PORT = process.env.PORT || 4000;
 //creates an endpoint for the route /api
 
-app.use("/static", express.static(REACT_BUILD_DIR));
+app.use(express.static(REACT_BUILD_DIR));
 
 app.use("/place", googleAPIrouter);
 app.use("/api", itemRouter);
 app.use("/admin", adminRouter);
 
 app.get("*", (req, res) => {
-  // res.json({ message: "Hello from ExpressJS" });
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 // console.log that your server is up and running
