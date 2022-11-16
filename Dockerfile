@@ -1,10 +1,11 @@
 FROM node:14-alpine
-
+ARG REACT_APP_AUTH0_DOMAIN
+ARG REACT_APP_AUTH0_CLIENT_ID
+ARG REACT_APP_AUDIENCE
 WORKDIR /client
 ADD client ./
 RUN npm install
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env npm run build
+RUN npm run build
 
 WORKDIR /server
 ADD server ./
