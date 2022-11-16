@@ -3,7 +3,7 @@ FROM node:14-alpine
 WORKDIR /client
 ADD client ./
 RUN npm install
-RUN npm run build
+RUN --mount=type=secret,id=finalproject,dst=/etc/secrets/finalproject npm run build
 
 WORKDIR /server
 ADD server ./
