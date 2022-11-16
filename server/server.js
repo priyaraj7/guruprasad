@@ -23,7 +23,7 @@ const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "build");
 //Set the port that you want the server to run on
 const PORT = process.env.PORT || 4000;
 //creates an endpoint for the route /api
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   // res.json({ message: "Hello from ExpressJS" });
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
