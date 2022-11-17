@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 
 import { withAuthenticationRequired } from "@auth0/auth0-react";
+
+import { useToast } from "@chakra-ui/react";
 // API
 import {
   addItem,
@@ -13,18 +15,16 @@ import MenuList from "./MenuList";
 import MenuForm from "./MenuForm";
 import { AdminContext } from "./AdminPage";
 
-import { useToast } from "@chakra-ui/react";
-
 function MenuListContainer() {
   const [itemData, setItemData] = useState([]);
   const [filteredItemData, setFilteredItemData] = useState(itemData);
   const [searchValue, setSearchValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [isFormVisible, setFormVisible] = useState(false);
   // to know which item we are editing
   const initialFormState = { itemname: "", price: "", categoryId: "" };
   const [currentItem, setCurrentItem] = useState(initialFormState);
   const token = useContext(AdminContext);
-  const [isFormVisible, setFormVisible] = useState(false);
 
   const toast = useToast();
 

@@ -47,6 +47,7 @@ describe("userEvent", () => {
   });
   it("should allow user to change category", () => {
     render(<MenuForm values={{ itemname: "", price: "", categoryId: "" }} />);
+    //Simulate selecting an option and verifying its value
     userEvent.selectOptions(
       screen.getByRole("combobox"),
       screen.getByRole("option", { name: "Early Breakfast" })

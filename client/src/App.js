@@ -17,16 +17,6 @@ import Footer from "./component/Footer";
 
 import Cart from "./component/customer/Cart";
 
-function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
-  return (
-    <div role="alert">
-      <p>Failed to load</p>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
-    </div>
-  );
-}
-
 function App() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
