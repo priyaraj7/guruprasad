@@ -30,7 +30,21 @@ describe("should render form and form element", () => {
 
     expect(screen.getAllByRole("option").length).toBe(5);
   });
+});
 
+describe("userEvent", () => {
+  it("should item name in the document", () => {
+    render(<MenuForm values={{ itemname: "", price: "", categoryId: "" }} />);
+    const inputNode = screen.getByTestId("item-name");
+    userEvent.type(inputNode, "Coffee");
+    expect(inputNode).toBeInTheDocument("Coffee");
+  });
+  it("should item price in the document", () => {
+    render(<MenuForm values={{ itemname: "", price: "", categoryId: "" }} />);
+    const inputNode = screen.getByTestId("price");
+    userEvent.type(inputNode, "33");
+    expect(inputNode).toBeInTheDocument("33");
+  });
   it("should allow user to change category", () => {
     render(<MenuForm values={{ itemname: "", price: "", categoryId: "" }} />);
     userEvent.selectOptions(

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useErrorHandler } from "react-error-boundary";
+
 import {
   FormControl,
   FormLabel,
@@ -18,8 +18,6 @@ import {
 
 function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
   const [inputValues, setInputValues] = useState(values);
-  // const {status, greeting, error} = useGreeting(inputValues)
-  // useErrorHandler(error)
 
   useEffect(() => {
     setInputValues(values);

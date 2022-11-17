@@ -16,7 +16,6 @@ import {
   VStack,
   Icon,
   Td,
-  Tooltip,
 } from "@chakra-ui/react";
 import { FaRupeeSign } from "react-icons/fa";
 
@@ -36,6 +35,7 @@ function MenuList({
     "Description",
     "Actions",
   ];
+  console.log(itemData);
   return (
     <>
       <Box

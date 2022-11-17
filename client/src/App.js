@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
-import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
 // COMPONENTS
 
@@ -39,19 +38,19 @@ function App() {
         links={isAdmin ? ADMIN_LINKS : CUSTOMER_LINKS}
         isAdminPage={isAdmin}
       />
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Routes>
-          <Route index element={<Menu />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/reviews" element={<ReviewPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="admin" element={<AdminPage />}>
-            <Route index element={<AdminHome />} />
-            <Route path="messages" element={<MessagesPage />} />
-            <Route path="menu" element={<MenuListContainer />} />
-          </Route>
-        </Routes>
-      </ErrorBoundary>
+
+      <Routes>
+        <Route index element={<Menu />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/reviews" element={<ReviewPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="admin" element={<AdminPage />}>
+          <Route index element={<AdminHome />} />
+          <Route path="messages" element={<MessagesPage />} />
+          <Route path="menu" element={<MenuListContainer />} />
+        </Route>
+      </Routes>
+
       <Footer />
     </ChakraProvider>
   );
