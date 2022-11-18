@@ -76,8 +76,9 @@ function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
                   value={inputValues.price}
                   onChange={handleChange}
                 />
-                <FormLabel htmlFor="price">Select Category</FormLabel>
+                <FormLabel htmlFor="categoryId">Select Category</FormLabel>
                 <Select
+                  id="categoryId"
                   placeholder="Select option"
                   data-testid="select-category"
                   name="categoryId"

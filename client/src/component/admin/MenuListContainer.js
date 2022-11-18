@@ -15,7 +15,7 @@ import MenuList from "./MenuList";
 import MenuForm from "./MenuForm";
 import { AdminContext } from "./AdminPage";
 
-function MenuListContainer() {
+export function MenuListContainer() {
   const [itemData, setItemData] = useState([]);
   const [filteredItemData, setFilteredItemData] = useState(itemData);
   const [searchValue, setSearchValue] = useState("");
