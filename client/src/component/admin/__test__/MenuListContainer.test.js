@@ -1,6 +1,6 @@
 // not working
 
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 
 import * as api from "../../../api/adminSideApi";
 import MenuListContainer from "../MenuListContainer";
@@ -28,7 +28,7 @@ describe("render", () => {
 
     // getting error  Expected number of calls: >= 1
 
-    //expect(api.getItemList).toHaveBeenCalled();
+    // await waitFor(() => expect(api.getItemList).toHaveBeenCalled());
     // expect(await screen.findByText("Breakfast")).toBeInTheDocument();
     // expect(await screen.findByText("7.30am to 6.30pm")).toBeInTheDocument();
   });
