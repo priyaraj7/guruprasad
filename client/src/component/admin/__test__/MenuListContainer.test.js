@@ -1,5 +1,3 @@
-// not working
-
 import { render, screen, waitFor } from "@testing-library/react";
 
 import * as api from "../../../api/adminSideApi";
@@ -25,9 +23,12 @@ describe("render", () => {
       },
     ]);
 
-    render(<AdminContext.Provider value="token"><MenuListContainer /></AdminContext.Provider>);
-
-    // getting error  Expected number of calls: >= 1
+    // Need to add the admin context in order to provide the token value.
+    render(
+      <AdminContext.Provider value="token">
+        <MenuListContainer />
+      </AdminContext.Provider>
+    );
 
     await waitFor(() => expect(api.getItemList).toHaveBeenCalledTimes(1));
     expect(await screen.findByText("Breakfast")).toBeInTheDocument();

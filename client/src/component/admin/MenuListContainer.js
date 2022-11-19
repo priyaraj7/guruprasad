@@ -15,6 +15,8 @@ import MenuList from "./MenuList";
 import MenuForm from "./MenuForm";
 import { AdminContext } from "./AdminPage";
 
+// I am exporting this on for testing
+// default export is authentication wrapped component, it difficult to do API test
 export function MenuListContainer() {
   const [itemData, setItemData] = useState([]);
   const [filteredItemData, setFilteredItemData] = useState(itemData);

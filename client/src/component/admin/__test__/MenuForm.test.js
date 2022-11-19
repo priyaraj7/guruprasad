@@ -1,4 +1,5 @@
 import React from "react";
+// within helper to get nested searches on the dom.
 import { render, screen, within } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
@@ -31,7 +32,9 @@ describe("should render form and form element", () => {
   it("should display the correct number of options", () => {
     render(<MenuForm values={{ itemname: "", price: "", categoryId: "" }} />);
 
-    expect(within(screen.getByLabelText(/Select Category/)).getAllByRole("option")).toHaveLength(5);
+    expect(
+      within(screen.getByLabelText(/Select Category/)).getAllByRole("option")
+    ).toHaveLength(5);
   });
 });
 
@@ -39,6 +42,7 @@ describe("userEvent", () => {
   it("should item name in the document", async () => {
     render(<MenuForm values={{ itemname: "", price: "", categoryId: "" }} />);
     const inputNode = screen.getByLabelText(/Item name/);
+    // userEvents are async and need to be awaited.
     await userEvent.type(inputNode, "Coffee");
     expect(inputNode).toHaveDisplayValue("Coffee");
   });
@@ -47,7 +51,6 @@ describe("userEvent", () => {
     const inputNode = screen.getByLabelText(/Price/);
     await userEvent.type(inputNode, "33");
 
-    // it is not right. toBeInTheDocument does not accept argument
     expect(inputNode).toHaveDisplayValue("33");
   });
   it("should allow user to change category", async () => {
@@ -57,8 +60,8 @@ describe("userEvent", () => {
       screen.getByLabelText(/Select Category/),
       screen.getByRole("option", { name: "Early Breakfast" })
     );
-    expect(
-      screen.getByLabelText(/Select Category/)
-    ).toHaveDisplayValue('Early Breakfast');
+    expect(screen.getByLabelText(/Select Category/)).toHaveDisplayValue(
+      "Early Breakfast"
+    );
   });
 });
