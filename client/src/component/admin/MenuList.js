@@ -91,7 +91,7 @@ function MenuList({
                   <Td>{item.itemname}</Td>
                   <Td>
                     <Icon as={FaRupeeSign} />
-                    {item.price.toFixed(2)}
+                    {Number(item.price).toFixed(2)}
                   </Td>
                   <Td>{item.categoryname}</Td>
                   <Td>{item.description}</Td>
