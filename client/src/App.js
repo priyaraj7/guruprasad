@@ -17,7 +17,6 @@ import Footer from "./component/Footer";
 
 import Cart from "./component/customer/Cart";
 
-
 function App() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
@@ -29,6 +28,7 @@ function App() {
         links={isAdmin ? ADMIN_LINKS : CUSTOMER_LINKS}
         isAdminPage={isAdmin}
       />
+
       <Routes>
         <Route index element={<Menu />} />
         <Route path="/contact" element={<ContactPage />} />
@@ -40,6 +40,7 @@ function App() {
           <Route path="menu" element={<MenuListContainer />} />
         </Route>
       </Routes>
+
       <Footer />
     </ChakraProvider>
   );

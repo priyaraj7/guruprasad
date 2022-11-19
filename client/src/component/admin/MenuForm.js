@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import {
   FormControl,
   FormLabel,
@@ -17,6 +18,7 @@ import {
 
 function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
   const [inputValues, setInputValues] = useState(values);
+
   useEffect(() => {
     setInputValues(values);
   }, [values]);
@@ -44,7 +46,7 @@ function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
   ];
 
   const selectedCategory = options.find(
-    (op) => op.label === inputValues.categoryname
+    (op) => inputValues && op.label === inputValues.categoryname
   );
 
   return (
@@ -60,6 +62,7 @@ function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
                 <FormLabel htmlFor="item-name">Item name</FormLabel>
                 <Input
                   id="item-name"
+                  data-testid="item-name"
                   name="itemname"
                   value={inputValues.itemname}
                   onChange={handleChange}
@@ -68,13 +71,16 @@ function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
                 <FormLabel htmlFor="price">Price</FormLabel>
                 <Input
                   id="price"
+                  data-testid="price"
                   name="price"
                   value={inputValues.price}
                   onChange={handleChange}
                 />
-                <FormLabel htmlFor="price">Select Category</FormLabel>
+                <FormLabel htmlFor="categoryId">Select Category</FormLabel>
                 <Select
+                  id="categoryId"
                   placeholder="Select option"
+                  data-testid="select-category"
                   name="categoryId"
                   value={(selectedCategory || {}).value}
                   onChange={handleChange}

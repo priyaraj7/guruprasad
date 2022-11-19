@@ -16,7 +16,6 @@ import {
   VStack,
   Icon,
   Td,
-  Tooltip,
 } from "@chakra-ui/react";
 import { FaRupeeSign } from "react-icons/fa";
 
@@ -36,6 +35,7 @@ function MenuList({
     "Description",
     "Actions",
   ];
+  console.log(itemData);
   return (
     <>
       <Box
@@ -71,7 +71,7 @@ function MenuList({
         </Flex>
         <TableContainer overflow-x="auto" overflow-y="hidden">
           <Table variant="striped" colorScheme="gray" size="md">
-            <Thead fontWeights="900">
+            <Thead fontweights="900">
               <Tr>
                 {tableHeader.map((header, index) => (
                   <Th
