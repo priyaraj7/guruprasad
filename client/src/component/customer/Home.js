@@ -19,6 +19,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import { getAllItem } from "../../api/menuListApi";
 
 import Cart from "./Cart";
+import Carousel from "./Carousel";
 
 const ItemContent = ({ children }) => {
   return (
@@ -99,6 +100,7 @@ export default function Menu() {
 
   return menuList ? (
     <>
+      <Carousel />
       {menuList.map((category) => {
         return (
           <Box bg="gray.50" spacing="8" key={category.id}>

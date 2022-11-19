@@ -4,3 +4,13 @@ export const getReviews = async () => {
 
   return result;
 };
+
+export const getMealImagesAPI = async () => {
+  try {
+    const response = await fetch(`place/mealImages`);
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};

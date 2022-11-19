@@ -29,10 +29,6 @@ export const CUSTOMER_LINKS = [
     href: "/",
   },
   {
-    label: "Menu",
-    href: "/",
-  },
-  {
     label: "Contact Us",
     href: "/contact",
   },

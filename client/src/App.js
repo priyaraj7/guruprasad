@@ -9,7 +9,7 @@ import AdminPage from "./component/admin/AdminPage";
 import AdminHome from "./component/admin/AdminHome";
 import MenuListContainer from "./component/admin/MenuListContainer";
 import MessagesPage from "./component/admin/MessagesPage";
-import Menu from "./component/customer/Menu";
+import Home from "./component/customer/Home";
 import ContactPage from "./component/customer/ContactPage";
 import ReviewPage from "./component/customer/ReviewPage";
 
@@ -30,7 +30,7 @@ function App() {
       />
 
       <Routes>
-        <Route index element={<Menu />} />
+        <Route index element={<Home />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/reviews" element={<ReviewPage />} />
         <Route path="/cart" element={<Cart />} />
