@@ -51,9 +51,6 @@ function ContactForm() {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      // console.log(values, "va");
-      // alert(JSON.stringify(values, null, 2));
-      // debugger;
       postUserMessage(values);
       resetForm({ values: "" });
     },

@@ -72,7 +72,6 @@ export function MenuListContainer() {
   };
 
   const toggleStatus = async (id) => {
-    // debugger;
     const itemIndex = itemData.findIndex((item) => item.id === id);
     if (itemIndex >= 0) {
       try {
