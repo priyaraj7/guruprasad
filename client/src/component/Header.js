@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link as RouteLink } from "react-router-dom";
+import { NavLink as RouteLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import {
@@ -39,10 +39,6 @@ export const CUSTOMER_LINKS = [
   {
     label: "Reviews",
     href: "/reviews",
-  },
-  {
-    label: "Cart",
-    href: "/cart",
   },
 ];
 
@@ -90,9 +86,13 @@ export default function Header({
   const cartIcon = !isAdminPage ? (
     <Popover>
       <PopoverTrigger>
-        <Button variant="ghost" onAnimationEnd={() => {}}>
-          <BsCart3 className="animate" />
-          {itemCount > 0 ? <sup>{itemCount}</sup> : null}
+        <Button variant="ghost">
+          <BsCart3 />
+          {itemCount > 0 ? (
+            <Text as="sup" color="red">
+              {itemCount}
+            </Text>
+          ) : null}
         </Button>
       </PopoverTrigger>
       <PopoverContent>
@@ -151,26 +151,14 @@ export default function Header({
           >
             <Button
               as={"a"}
+              colorScheme="blue"
+              variant="solid"
               fontSize={"sm"}
               fontWeight={400}
-              variant={"link"}
               href={authUrl}
             >
               {isAuthenticated ? "Sign Out" : "Sign In"}
             </Button>
-            {/* <Button
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"sm"}
-              fontWeight={600}
-              color={"white"}
-              bg={"pink.400"}
-              href={"#"}
-              _hover={{
-                bg: "pink.300",
-              }}
-            >
-              Sign Up
-            </Button> */}
           </Stack>
         ) : (
           cartIcon
@@ -185,10 +173,6 @@ export default function Header({
 }
 
 const DesktopNav = ({ links }) => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
   return (
     <Stack direction={"row"} spacing={4}>
       {links.map((navItem) => (
@@ -197,15 +181,10 @@ const DesktopNav = ({ links }) => {
             <PopoverTrigger>
               <Link
                 as={RouteLink}
+                _activeLink={{ fontWeight: "bold" }}
                 p={2}
                 to={navItem.href ?? "#"}
                 fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
               >
                 {navItem.label}
               </Link>
@@ -215,7 +194,6 @@ const DesktopNav = ({ links }) => {
               <PopoverContent
                 border={0}
                 boxShadow={"xl"}
-                bg={popoverContentBgColor}
                 p={4}
                 rounded={"xl"}
                 minW={"sm"}

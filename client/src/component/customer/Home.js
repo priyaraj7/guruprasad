@@ -110,7 +110,9 @@ export default function Home({ addToCart = () => {}, cartItems = [] }) {
                                   addToCart({ ...item, quantity: 0 });
                                 }}
                               >
-                                <MdDelete />
+                                <Text fontSize="xl">
+                                  <MdDelete />
+                                </Text>
                               </Button>
                             </>
                           ) : (

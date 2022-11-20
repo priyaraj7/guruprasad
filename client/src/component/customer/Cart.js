@@ -62,7 +62,9 @@ function Cart({ cartItems, addToCart }) {
                         addToCart({ ...item, quantity: 0 });
                       }}
                     >
-                      <MdDelete />
+                      <Text fontSize="xl">
+                        <MdDelete />
+                      </Text>
                     </Button>
                   </Stack>
                 </Stack>
