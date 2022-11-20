@@ -16,12 +16,16 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverBody,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { BsCart3 } from "react-icons/bs";
 
 import Logo from "./Logo";
+import Cart from "./customer/Cart";
 
 export const CUSTOMER_LINKS = [
   {
@@ -56,7 +60,12 @@ export const ADMIN_LINKS = [
     href: "/admin/messages",
   },
 ];
-export default function Header({ links, isAdminPage }) {
+export default function Header({
+  links,
+  isAdminPage,
+  cartItems = [],
+  addToCart = () => {},
+}) {
   const { isOpen, onToggle } = useDisclosure();
   const { isAuthenticated, buildLogoutUrl, buildAuthorizeUrl } = useAuth0();
   const [authUrl, setAuthUrl] = useState("");
@@ -71,8 +80,28 @@ export default function Header({ links, isAdminPage }) {
             }))
       );
     })();
-  }, [isAuthenticated]); // when isAuthenticated changes logIn changes to logOut viseversa
+  }, [isAuthenticated, buildLogoutUrl, buildAuthorizeUrl]); // when isAuthenticated changes logIn changes to logOut viseversa
 
+  const itemCount = cartItems.reduce((acc, item) => {
+    return acc + Number(item.quantity);
+  }, 0);
+  const cartIcon = !isAdminPage ? (
+    <Popover>
+      <PopoverTrigger>
+        <Button variant="ghost" onAnimationEnd={() => {}}>
+          <BsCart3 className="animate" />
+          {itemCount > 0 ? <sup>{itemCount}</sup> : null}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody>
+          <Cart addToCart={addToCart} cartItems={cartItems} />
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  ) : null;
   return (
     <Box>
       <Flex
@@ -141,7 +170,9 @@ export default function Header({ links, isAdminPage }) {
               Sign Up
             </Button> */}
           </Stack>
-        ) : null}
+        ) : (
+          cartIcon
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

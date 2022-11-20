@@ -9,85 +9,36 @@ import {
   Container,
   Button,
   Spacer,
-  useColorModeValue,
   Icon,
   SimpleGrid,
+  Select,
 } from "@chakra-ui/react";
 
 import { FaRupeeSign } from "react-icons/fa";
-
+import { MdDelete } from "react-icons/md";
 import { getAllItem } from "../../api/menuListApi";
 
-import Cart from "./Cart";
 import Carousel from "./Carousel";
 
 const ItemContent = ({ children }) => {
   return (
     <Stack
-      columns={{ sm: 2, md: 4 }}
-      bg={useColorModeValue("white", "gray.800")}
+      bg="white"
       boxShadow={"lg"}
-      p={8}
+      p={6}
       rounded={"xl"}
       align={"center"}
       pos={"relative"}
-      _after={{
-        content: `""`,
-        w: 0,
-        h: 0,
-        borderLeft: "solid transparent",
-        borderLeftWidth: 16,
-        borderRight: "solid transparent",
-        borderRightWidth: 16,
-        borderTop: "solid",
-        // borderTopWidth: 16,
-        borderTopColor: useColorModeValue("white", "gray.800"),
-        pos: "absolute",
-        // bottom: "-16px",
-        left: "50%",
-        transform: "translateX(-50%)",
-      }}
     >
       {children}
     </Stack>
   );
 };
 
-export default function Menu() {
+export default function Home({ addToCart = () => {}, cartItems = [] }) {
   const [menuList, setMenuList] = useState(null);
-  // Cart
-  const [cart, setCart] = useState([]);
-  console.log(cart);
 
-  const handleAddTOCart = (item) => {
-    // Button on click
-    // Update cart item quantity if already in cart
-    if (cart.some((cartItem) => cartItem.id === item.id)) {
-      setCart((cart) =>
-        cart.map((cartItem) =>
-          cartItem.id === item.id
-            ? {
-                ...cartItem,
-                amount: cartItem.amount + 1,
-              }
-            : cartItem
-        )
-      );
-      return;
-    }
-
-    // Add to cart
-    setCart((cart) => [
-      ...cart,
-      { ...item, amount: 1 }, // <-- initial amount 1
-    ]);
-  };
-
-  // const handleAddTOCart = (item) => {
-  //   setCart([...cart, item]);
-  // };
-
-  ////
+  // API call
   const getMenuList = async () => {
     setMenuList(await getAllItem());
   };
@@ -95,8 +46,6 @@ export default function Menu() {
   useEffect(() => {
     getMenuList();
   }, []);
-
-  console.log(menuList);
 
   return menuList ? (
     <>
@@ -110,11 +59,13 @@ export default function Menu() {
                 <Text>{category.description}</Text>
               </Stack>
               <SimpleGrid
-                // direction={{ base: "column", md: "row" }}
                 columns={[1, null, 4]}
                 spacing={{ base: 10, md: 4, lg: 10 }}
               >
                 {category.items.map((item) => {
+                  const itemInCart = cartItems.find(
+                    (cartItem) => cartItem.id === item.id
+                  );
                   return (
                     <Box key={item.id}>
                       <ItemContent>
@@ -124,21 +75,52 @@ export default function Menu() {
                           alignItems="center"
                           gap="2"
                         >
-                          <Box p="2">
+                          <Box p="1">
                             <Text size="md">
                               <Icon as={FaRupeeSign} />
                               {item.price}
                             </Text>
                           </Box>
                           <Spacer />
-
-                          <Button
-                            colorScheme="red"
-                            variant="solid"
-                            onClick={() => handleAddTOCart(item)}
-                          >
-                            Add To cart
-                          </Button>
+                          {itemInCart ? (
+                            <>
+                              <Select
+                                value={`${itemInCart.quantity}`}
+                                maxW="64px"
+                                aria-label="Select quantity"
+                                onChange={(ev) => {
+                                  addToCart({
+                                    ...item,
+                                    quantity: ev.target.value,
+                                  });
+                                }}
+                              >
+                                {new Array(10).fill(0).map((_, index) => (
+                                  <option key={index} value={index}>
+                                    {index}
+                                  </option>
+                                ))}
+                              </Select>
+                              <Button
+                                variant="ghost"
+                                onClick={() => {
+                                  addToCart({ ...item, quantity: 0 });
+                                }}
+                              >
+                                <MdDelete />
+                              </Button>
+                            </>
+                          ) : (
+                            <Button
+                              colorScheme="red"
+                              variant="solid"
+                              onClick={() => {
+                                addToCart({ ...item, quantity: 1 });
+                              }}
+                            >
+                              Add To cart
+                            </Button>
+                          )}
                         </Flex>
                       </ItemContent>
                     </Box>
@@ -149,7 +131,6 @@ export default function Menu() {
           </Box>
         );
       })}
-      <Cart cart={cart} />
     </>
   ) : (
     <h1>Loading....</h1>
