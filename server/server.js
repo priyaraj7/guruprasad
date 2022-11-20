@@ -33,7 +33,7 @@ app.use("/admin", adminRouter);
 app.get("*", (req, res) => {
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
-// console.log that your server is up and running
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

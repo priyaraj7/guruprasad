@@ -52,20 +52,21 @@ export function MenuListContainer() {
     setCurrentItem({ ...item });
   };
   console.log(currentItem);
-  const updateItem = (id, item) =>
-    setItemData(itemData.map((data) => (data.id === id ? item : data)));
+  const updateItem = (id, item) => {
+    setItemData(
+      itemData.map((data) => {
+        return data.id === id ? item : data;
+      })
+    );
+  };
 
   // console.log(updateItem, "item");
   const handleEditSubmit = async (updatedItem) => {
-    console.log(updatedItem, "update");
-    updateItem(currentItem.id, updatedItem);
-    console.log(updateItem(currentItem.id, updatedItem), "fn");
-    // calling API
-
     const result = await updateItemApi(currentItem.id, updatedItem, token);
     console.log(result);
+    updateItem(currentItem.id, result);
     // setCurrentItem(initialFormState);
-    setCurrentItem(result);
+
     setIsEditing(false);
     setFormVisible(false);
   };

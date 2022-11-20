@@ -4,6 +4,7 @@ const frontendDataQuery = `SELECT
  price,
  active,
  category_name AS categoryName,
+ category_id as categoryId,
  description
 from
  item
@@ -12,7 +13,6 @@ from
 export default function (db) {
   return {
     getAllItem: async () => {
-      debugger;
       const { rows: items } = await db.query(frontendDataQuery);
 
       return items;
@@ -40,7 +40,7 @@ export default function (db) {
     },
 
     updateItem: async (id, item) => {
-      const query = `Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *`;
+      const query = `with item as (Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *) ${frontendDataQuery}`;
       const values = [item.itemname, item.price, item.categoryId, id];
       return await db.query(query, values);
     },

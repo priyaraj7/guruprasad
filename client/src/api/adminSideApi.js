@@ -9,7 +9,7 @@
 // Menu related API
 export const getItemList = async (token) => {
   try {
-    const response = await fetch(`/admin/menu`, {
+    const response = await fetch(`/admin/menu.json`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -33,7 +33,7 @@ export const addItem = async (newItem, token) => {
   };
 
   try {
-    const response = await fetch(`/admin/menu`, requestOptions);
+    const response = await fetch(`/admin/menu.json`, requestOptions);
     return response.json();
   } catch (error) {
     console.log(error);

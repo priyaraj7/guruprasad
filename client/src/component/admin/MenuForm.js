@@ -42,7 +42,7 @@ function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
     { label: "Early Breakfast", value: "1" },
     { label: "Breakfast", value: "2" },
     { label: "Supper", value: "3" },
-    { label: "Beverage", value: "4" },
+    { label: "Beverages", value: "4" },
   ];
 
   const selectedCategory = options.find(
