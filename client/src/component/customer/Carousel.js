@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Text, Heading, Container, Stack, Center } from "@chakra-ui/react";
+import { Box, Text, Heading, Container, Stack } from "@chakra-ui/react";
 import Slider from "react-slick";
 
 import { getMealImagesAPI } from "../../api/googleApi";

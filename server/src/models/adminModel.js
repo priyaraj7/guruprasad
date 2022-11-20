@@ -14,7 +14,7 @@ export default function (db) {
   return {
     getAllItem: async () => {
       const { rows: items } = await db.query(
-        `${frontendDataQuery} ORDER BY item.id ASC`
+        `${frontendDataQuery} ORDER BY item.id DESC`
       );
 
       return items;

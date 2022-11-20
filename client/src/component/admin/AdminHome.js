@@ -1,9 +1,12 @@
+import { Box, Text, Heading, Container, Stack } from "@chakra-ui/react";
 function AdminHome() {
   return (
-    <>
-      This is the page that will be shown if `/admin` url is used and does not
-      have any thing in the url after it. This is the index
-    </>
+    <Container>
+      <Heading textAlign="center">Welcome to Admin Page</Heading>
+      <Text textAlign="center" p={3}>
+        Please Sign In to proceed
+      </Text>
+    </Container>
   );
 }
 

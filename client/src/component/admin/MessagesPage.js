@@ -103,6 +103,7 @@ function MessagesPage() {
                   {getDateTimeFromTimestamp(message.messaged_at)}
                 </Box>
                 <Text>{message.message}</Text>
+                <Text>{message.message}</Text>
               </Box>
               <Spacer />
               <Button onClick={() => deleteMessage(message.id)}>delete</Button>
