@@ -52,8 +52,8 @@ export default function Home({ addToCart = () => {}, cartItems = [] }) {
       <Carousel />
       {menuList.map((category) => {
         return (
-          <Box bg="gray.50" spacing="8" key={category.id}>
-            <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
+          <Box bg="gray.50" spacing="4" key={category.id}>
+            <Container maxW={"7xl"} py={5} as={Stack} spacing={6}>
               <Stack spacing={0} align={"center"}>
                 <Heading>{category.categoryname}</Heading>
                 <Text>{category.description}</Text>
@@ -75,12 +75,13 @@ export default function Home({ addToCart = () => {}, cartItems = [] }) {
                           alignItems="center"
                           gap="2"
                         >
-                          <Box p="1">
+                          <Flex p="1">
+                            <Icon as={FaRupeeSign} />
                             <Text size="md">
-                              <Icon as={FaRupeeSign} />
+                              <Text as="span"></Text>
                               {item.price}
                             </Text>
-                          </Box>
+                          </Flex>
                           <Spacer />
                           {itemInCart ? (
                             <>
@@ -102,7 +103,9 @@ export default function Home({ addToCart = () => {}, cartItems = [] }) {
                                 ))}
                               </Select>
                               <Button
+                                colorScheme="red"
                                 variant="ghost"
+                                _hover={{ bg: "red.500", color: " white" }}
                                 onClick={() => {
                                   addToCart({ ...item, quantity: 0 });
                                 }}
@@ -113,7 +116,8 @@ export default function Home({ addToCart = () => {}, cartItems = [] }) {
                           ) : (
                             <Button
                               colorScheme="red"
-                              variant="solid"
+                              variant="outline"
+                              _hover={{ bg: "red.500", color: " white" }}
                               onClick={() => {
                                 addToCart({ ...item, quantity: 1 });
                               }}

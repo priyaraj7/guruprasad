@@ -7,6 +7,7 @@ import {
   Heading,
   Flex,
   Button,
+  Divider,
 } from "@chakra-ui/react";
 import { BiRupee } from "react-icons/bi";
 import { MdCall } from "react-icons/md";
@@ -30,44 +31,41 @@ function Cart({ cartItems, addToCart }) {
           <Stack align={{ lg: "flex-start" }} spacing={{ base: "3", md: "6" }}>
             {cartItems.map((item, index) => (
               <Stack direction="row" spacing="1" width="full" key={index}>
-                <Box>
-                  <Stack spacing="1">
-                    <Text fontWeight="semibold" gap={2}>
-                      {item.itemName}
-                    </Text>
+                <Stack spacing="1" align="center">
+                  <Heading size="sm">{item.itemName}</Heading>
 
-                    <Flex justify="space-between">
-                      <Select
-                        value={`${item.quantity}`}
-                        maxW="64px"
-                        aria-label="Select quantity"
-                        onChange={(ev) => {
-                          addToCart({ ...item, quantity: ev.target.value });
-                        }}
-                      >
-                        {new Array(10).fill(0).map((_, index) => (
-                          <option key={index} value={index}>
-                            {index}
-                          </option>
-                        ))}
-                      </Select>
-                      <Flex ml="10">
-                        <Icon as={BiRupee} w={5} h={5} />
-                        <Text fontSize="medium">{item.price}</Text>
-                      </Flex>
-
-                      <Button
-                        colorScheme="red"
-                        variant="ghost"
-                        onClick={() => {
-                          addToCart({ ...item, quantity: 0 });
-                        }}
-                      >
-                        <MdDelete />
-                      </Button>
+                  <Stack direction="row" spacing={4} align="center">
+                    <Select
+                      value={`${item.quantity}`}
+                      maxW="64px"
+                      aria-label="Select quantity"
+                      onChange={(ev) => {
+                        addToCart({ ...item, quantity: ev.target.value });
+                      }}
+                    >
+                      {new Array(10).fill(0).map((_, index) => (
+                        <option key={index} value={index}>
+                          {index}
+                        </option>
+                      ))}
+                    </Select>
+                    <Flex ml="10">
+                      <Icon as={BiRupee} w={5} h={5} />
+                      <Text fontSize="medium">{item.price}</Text>
                     </Flex>
+
+                    <Button
+                      colorScheme="red"
+                      variant="ghost"
+                      _hover={{ bg: "red.500", color: " white" }}
+                      onClick={() => {
+                        addToCart({ ...item, quantity: 0 });
+                      }}
+                    >
+                      <MdDelete />
+                    </Button>
                   </Stack>
-                </Box>
+                </Stack>
               </Stack>
             ))}
             <Box pt="6">
@@ -81,7 +79,7 @@ function Cart({ cartItems, addToCart }) {
                     Total
                   </Text>
                   <Text fontSize="xl" fontWeight="extrabold">
-                    {totalPrice}
+                    <Icon as={BiRupee} /> {totalPrice}
                   </Text>
                 </Flex>
               </Stack>
@@ -94,6 +92,7 @@ function Cart({ cartItems, addToCart }) {
               </Button>
             </Box>{" "}
           </Stack>
+          <Divider />
         </Box>
       ) : (
         <div>Shopping cart is empty</div>

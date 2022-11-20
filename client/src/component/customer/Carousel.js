@@ -18,16 +18,9 @@ const settings = {
 };
 
 export default function Carousel() {
-  // As we have used custom buttons, we need a reference variable to
-  // change the state
-  const [, setSlider] = useState("");
   const [mealDBimages, setMealDBImages] = useState([]);
 
-  // These are the breakpoints which changes the position of the
-  // buttons as the screen size changes
-
   const cards = mealDBimages.meals;
-  console.log(cards);
 
   // Fetching Data
   useEffect(() => {
@@ -59,19 +52,17 @@ export default function Carousel() {
       />
 
       {/* Slider */}
-      <Slider {...settings} ref={(slider) => setSlider(slider)}>
+      <Slider {...settings}>
         {cards.map((url, index) => (
           <Box
             key={index}
             height={"6xl"}
-            // maxHeight="50%"
-            // maxHeight="50%"
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
+            // cover, that scales an image to fill the container completely without cropping too much area of the image:
             backgroundSize="cover"
             backgroundImage={`url(${url.strMealThumb})`}
-            // {url.strMealThumb}
           />
         ))}
       </Slider>
