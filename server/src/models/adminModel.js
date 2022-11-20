@@ -8,12 +8,14 @@ const frontendDataQuery = `SELECT
  description
 from
  item
- left join category on category_id = category.id;`;
+ left join category on category_id = category.id`;
 
 export default function (db) {
   return {
     getAllItem: async () => {
-      const { rows: items } = await db.query(frontendDataQuery);
+      const { rows: items } = await db.query(
+        `${frontendDataQuery} ORDER BY item.id ASC`
+      );
 
       return items;
     },
@@ -46,7 +48,7 @@ export default function (db) {
     },
 
     getMessage: async () => {
-      const getQuery = `SELECT * FROM message`;
+      const getQuery = `SELECT * FROM message ORDER BY messaged_at DESC`;
       return await db.query(getQuery);
     },
 

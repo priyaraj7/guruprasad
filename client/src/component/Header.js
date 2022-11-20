@@ -70,7 +70,7 @@ export default function Header({
       setAuthUrl(
         await (isAuthenticated
           ? buildLogoutUrl({
-              returnTo: window.location.origin,
+              returnTo: `${window.location.origin}/admin`,
             }) // this not to be waited
           : buildAuthorizeUrl({
               // this returns a promise
