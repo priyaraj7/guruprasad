@@ -73,7 +73,9 @@ export default function Header({
     (async () => {
       setAuthUrl(
         await (isAuthenticated
-          ? buildLogoutUrl() // this not to be waited
+          ? buildLogoutUrl({
+              returnTo: window.location.origin,
+            }) // this not to be waited
           : buildAuthorizeUrl({
               // this returns a promise
               audience: process.env.REACT_APP_AUDIENCE,
