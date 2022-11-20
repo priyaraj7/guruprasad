@@ -101,14 +101,7 @@ export function MenuListContainer() {
     if (searchValue !== "") {
       const result = itemData.filter((item, index) => {
         //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase
-        // if (item.itemname.toLocaleLowerCase().startsWith(searchValue)) {
-        //   correctIndex = searchValue.length;
-        //   return item.itemname.toLowerCase().startsWith(searchValue);
-        // } else {
-        //   return item.itemname
-        //     .toLowerCase()
-        //     .startsWith(searchValue.substring(0, correctIndex));
-        // }
+
         return (
           item.itemname
             .toLocaleLowerCase()

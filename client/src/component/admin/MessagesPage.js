@@ -32,6 +32,13 @@ function MessagesPage() {
     if (result && result.status === "success") {
       const removeMsg = userMessages.filter((msg) => msg.id !== id);
       setUserMessages(removeMsg);
+      toast({
+        title: "Message deleted successfully.",
+        status: "success",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
     } else {
       toast({
         title: "Failed to delete message.",
@@ -42,7 +49,6 @@ function MessagesPage() {
     }
   };
 
-  // console.log("mesg", userMessages);
   return (
     <>
       {userMessages.map((message) => {
