@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 
@@ -12,11 +13,9 @@ import MessagesPage from "./components/admin/MessagesPage";
 import Home from "./components/customer/Home";
 import ContactPage from "./components/customer/ContactPage";
 import ReviewPage from "./components/customer/ReviewPage";
-
 import Footer from "./components/Footer";
-
+import PageNotFound from "./components/PageNotFound";
 import Cart from "./components/customer/Cart";
-import { useState } from "react";
 
 function App() {
   const location = useLocation();
@@ -48,6 +47,7 @@ function App() {
       />
 
       <Routes>
+        <Route path="*" element={<PageNotFound />} />
         <Route
           index
           element={<Home addToCart={addToCart} cartItems={cartItems} />}
