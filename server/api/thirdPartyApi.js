@@ -5,6 +5,20 @@ import { mockGoogleApiData } from "./mockGoogleApiData .js";
 
 const router = express.Router();
 
+router.get("/mealImages", async (req, res) => {
+  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=vegetarian`;
+
+  try {
+    const mealDBApiResponse = await fetch(url);
+
+    if (!mealDBApiResponse.ok) throw await mealDBApiResponse.json();
+
+    return res.json(await mealDBApiResponse.json());
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error: "Failed to get images" });
+  }
+});
 // MOCK-API-DATA FETCHING
 
 router.get("/reviews", async (req, res) => {

@@ -4,16 +4,18 @@ const frontendDataQuery = `SELECT
  price,
  active,
  category_name AS categoryName,
+ category_id as categoryId,
  description
 from
  item
- left join category on category_id = category.id;`;
+ left join category on category_id = category.id`;
 
 export default function (db) {
   return {
     getAllItem: async () => {
-      debugger;
-      const { rows: items } = await db.query(frontendDataQuery);
+      const { rows: items } = await db.query(
+        `${frontendDataQuery} ORDER BY item.id DESC`
+      );
 
       return items;
     },
@@ -40,13 +42,13 @@ export default function (db) {
     },
 
     updateItem: async (id, item) => {
-      const query = `Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *`;
+      const query = `with item as (Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *) ${frontendDataQuery}`;
       const values = [item.itemname, item.price, item.categoryId, id];
       return await db.query(query, values);
     },
 
     getMessage: async () => {
-      const getQuery = `SELECT * FROM message`;
+      const getQuery = `SELECT * FROM message ORDER BY messaged_at DESC`;
       return await db.query(getQuery);
     },
 

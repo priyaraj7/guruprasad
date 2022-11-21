@@ -9,7 +9,6 @@ function AdminPage() {
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [tokenData, setTokenData] = useState(null);
   useEffect(() => {
-    // debugger;
     (async () => {
       if (isAuthenticated) {
         const audience = process.env.REACT_APP_AUDIENCE;

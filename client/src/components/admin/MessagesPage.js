@@ -32,6 +32,13 @@ function MessagesPage() {
     if (result && result.status === "success") {
       const removeMsg = userMessages.filter((msg) => msg.id !== id);
       setUserMessages(removeMsg);
+      toast({
+        title: "Message deleted successfully.",
+        status: "success",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
     } else {
       toast({
         title: "Failed to delete message.",
@@ -42,7 +49,25 @@ function MessagesPage() {
     }
   };
 
-  // console.log("mesg", userMessages);
+  // https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
+  function getDateTimeFromTimestamp(unixTimeStamp) {
+    let date = new Date(unixTimeStamp);
+    return (
+      ("0" + (date.getMonth() + 1)).slice(-2) +
+      "/" +
+      ("0" + date.getDate()).slice(-2) +
+      "/" +
+      date.getFullYear() +
+      " " +
+      ("0" + date.getHours()).slice(-2) +
+      ":" +
+      ("0" + date.getMinutes()).slice(-2)
+    );
+  }
+
+  const myTime = getDateTimeFromTimestamp(1435986900000);
+  console.log(myTime);
+
   return (
     <>
       {userMessages.map((message) => {
@@ -75,8 +100,9 @@ function MessagesPage() {
                   letterSpacing="wide"
                   fontSize="xs"
                 >
-                  {message.messaged_at}
+                  {getDateTimeFromTimestamp(message.messaged_at)}
                 </Box>
+                <Text>{message.message}</Text>
                 <Text>{message.message}</Text>
               </Box>
               <Spacer />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link as RouteLink } from "react-router-dom";
+import { NavLink as RouteLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import {
@@ -16,20 +16,20 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverBody,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { BsCart3 } from "react-icons/bs";
 
 import Logo from "./Logo";
+import Cart from "./customer/Cart";
 
 export const CUSTOMER_LINKS = [
   {
     label: "Home",
-    href: "/",
-  },
-  {
-    label: "Menu",
     href: "/",
   },
   {
@@ -39,10 +39,6 @@ export const CUSTOMER_LINKS = [
   {
     label: "Reviews",
     href: "/reviews",
-  },
-  {
-    label: "Cart",
-    href: "/cart",
   },
 ];
 
@@ -60,7 +56,12 @@ export const ADMIN_LINKS = [
     href: "/admin/messages",
   },
 ];
-export default function Header({ links, isAdminPage }) {
+export default function Header({
+  links,
+  isAdminPage,
+  cartItems = [],
+  addToCart = () => {},
+}) {
   const { isOpen, onToggle } = useDisclosure();
   const { isAuthenticated, buildLogoutUrl, buildAuthorizeUrl } = useAuth0();
   const [authUrl, setAuthUrl] = useState("");
@@ -68,15 +69,41 @@ export default function Header({ links, isAdminPage }) {
     (async () => {
       setAuthUrl(
         await (isAuthenticated
-          ? buildLogoutUrl() // this not to be waited
+          ? buildLogoutUrl({
+              returnTo: `${window.location.origin}/admin`,
+            }) // this not to be waited
           : buildAuthorizeUrl({
               // this returns a promise
               audience: process.env.REACT_APP_AUDIENCE,
             }))
       );
     })();
-  }, [isAuthenticated]); // when isAuthenticated changes logIn changes to logOut viseversa
+  }, [isAuthenticated, buildLogoutUrl, buildAuthorizeUrl]); // when isAuthenticated changes logIn changes to logOut viseversa
 
+  const itemCount = cartItems.reduce((acc, item) => {
+    return acc + Number(item.quantity);
+  }, 0);
+  const cartIcon = !isAdminPage ? (
+    <Popover>
+      <PopoverTrigger>
+        <Button variant="ghost">
+          <BsCart3 />
+          {itemCount > 0 ? (
+            <Text as="sup" color="red">
+              {itemCount}
+            </Text>
+          ) : null}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody>
+          <Cart addToCart={addToCart} cartItems={cartItems} />
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  ) : null;
   return (
     <Box>
       <Flex
@@ -124,28 +151,18 @@ export default function Header({ links, isAdminPage }) {
           >
             <Button
               as={"a"}
+              colorScheme="blue"
+              variant="solid"
               fontSize={"sm"}
               fontWeight={400}
-              variant={"link"}
               href={authUrl}
             >
               {isAuthenticated ? "Sign Out" : "Sign In"}
             </Button>
-            {/* <Button
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"sm"}
-              fontWeight={600}
-              color={"white"}
-              bg={"pink.400"}
-              href={"#"}
-              _hover={{
-                bg: "pink.300",
-              }}
-            >
-              Sign Up
-            </Button> */}
           </Stack>
-        ) : null}
+        ) : (
+          cartIcon
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -156,10 +173,6 @@ export default function Header({ links, isAdminPage }) {
 }
 
 const DesktopNav = ({ links }) => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
   return (
     <Stack direction={"row"} spacing={4}>
       {links.map((navItem) => (
@@ -168,15 +181,10 @@ const DesktopNav = ({ links }) => {
             <PopoverTrigger>
               <Link
                 as={RouteLink}
+                _activeLink={{ fontWeight: "bold" }}
                 p={2}
                 to={navItem.href ?? "#"}
                 fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
               >
                 {navItem.label}
               </Link>
@@ -186,7 +194,6 @@ const DesktopNav = ({ links }) => {
               <PopoverContent
                 border={0}
                 boxShadow={"xl"}
-                bg={popoverContentBgColor}
                 p={4}
                 rounded={"xl"}
                 minW={"sm"}

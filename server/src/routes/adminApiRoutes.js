@@ -29,7 +29,7 @@ import {
 const router = express.Router();
 
 router.get("/menu", jwtCheck, getItemController);
-router.post("/menu/", jwtCheck, addItemController);
+router.post("/menu", jwtCheck, addItemController);
 router.put("/menu/:id/status", jwtCheck, toggleStatusController);
 router.put("/menu/:id", jwtCheck, updateItemController);
 

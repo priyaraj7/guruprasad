@@ -10,6 +10,8 @@ import {
   InputGroup,
   InputLeftElement,
   Textarea,
+  useToast,
+  Text,
 } from "@chakra-ui/react";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsPerson, BsPhone } from "react-icons/bs";
@@ -24,6 +26,8 @@ const validate = (values) => {
     errors.name = "Required";
   } else if (values.name.length > 15) {
     errors.name = "Must be 15 characters or less";
+  } else if (values.name.length < 2) {
+    errors.name = "Atleast 2 character";
   }
 
   if (!values.email) {
@@ -34,12 +38,15 @@ const validate = (values) => {
 
   if (!values.message) {
     errors.message = "Required";
+  } else if (values.message.length < 10) {
+    errors.message = "Atleast 10 character required";
   }
 
   return errors;
 };
 
 function ContactForm() {
+  const toast = useToast();
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
   const formik = useFormik({
@@ -51,21 +58,25 @@ function ContactForm() {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      // console.log(values, "va");
-      // alert(JSON.stringify(values, null, 2));
-      // debugger;
       postUserMessage(values);
       resetForm({ values: "" });
+      toast({
+        title: "Message Sent successfully.",
+        description: "Thank you for your message",
+        status: "success",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
     },
   });
-  console.log(formik);
 
   return (
     <Box bg="white" borderRadius="lg">
       <Box m={8} color="#0B0E3F">
         <form onSubmit={formik.handleSubmit}>
           <VStack spacing={5}>
-            <FormControl id="name" isRequired>
+            <FormControl id="name">
               <FormLabel>Your Name</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
@@ -81,9 +92,11 @@ function ContactForm() {
                   value={formik.values.name}
                 />
               </InputGroup>
-              {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+              {formik.errors.name && formik.touched ? (
+                <Text color="tomato">{formik.errors.name}</Text>
+              ) : null}
             </FormControl>
-            <FormControl id="email" isRequired>
+            <FormControl id="email">
               <FormLabel>Mail</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
@@ -100,7 +113,9 @@ function ContactForm() {
                   value={formik.values.email}
                 />
               </InputGroup>
-              {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+              {formik.errors.email && formik.touched ? (
+                <Text color="tomato">{formik.errors.email}</Text>
+              ) : null}
             </FormControl>
             <FormControl id="phone">
               <FormLabel>Phone Number</FormLabel>
@@ -119,7 +134,7 @@ function ContactForm() {
                 />
               </InputGroup>
             </FormControl>
-            <FormControl id="message" isRequired>
+            <FormControl id="message">
               <FormLabel>Message</FormLabel>
               <Textarea
                 borderColor="gray.300"
@@ -134,8 +149,8 @@ function ContactForm() {
                 onChange={formik.handleChange}
                 value={formik.values.message}
               />
-              {formik.errors.message ? (
-                <div>{formik.errors.message}</div>
+              {formik.errors.message && formik.touched ? (
+                <Text color="tomato">{formik.errors.message}</Text>
               ) : null}
             </FormControl>
             <FormControl id="button" float="right">

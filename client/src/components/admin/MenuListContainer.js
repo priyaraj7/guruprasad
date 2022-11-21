@@ -52,26 +52,26 @@ export function MenuListContainer() {
     setCurrentItem({ ...item });
   };
   console.log(currentItem);
-  const updateItem = (id, item) =>
-    setItemData(itemData.map((data) => (data.id === id ? item : data)));
+  const updateItem = (id, item) => {
+    setItemData(
+      itemData.map((data) => {
+        return data.id === id ? item : data;
+      })
+    );
+  };
 
   // console.log(updateItem, "item");
   const handleEditSubmit = async (updatedItem) => {
-    console.log(updatedItem, "update");
-    updateItem(currentItem.id, updatedItem);
-    console.log(updateItem(currentItem.id, updatedItem), "fn");
-    // calling API
-
     const result = await updateItemApi(currentItem.id, updatedItem, token);
     console.log(result);
+    updateItem(currentItem.id, result);
     // setCurrentItem(initialFormState);
-    setCurrentItem(result);
+
     setIsEditing(false);
     setFormVisible(false);
   };
 
   const toggleStatus = async (id) => {
-    // debugger;
     const itemIndex = itemData.findIndex((item) => item.id === id);
     if (itemIndex >= 0) {
       try {
@@ -101,14 +101,7 @@ export function MenuListContainer() {
     if (searchValue !== "") {
       const result = itemData.filter((item, index) => {
         //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase
-        // if (item.itemname.toLocaleLowerCase().startsWith(searchValue)) {
-        //   correctIndex = searchValue.length;
-        //   return item.itemname.toLowerCase().startsWith(searchValue);
-        // } else {
-        //   return item.itemname
-        //     .toLowerCase()
-        //     .startsWith(searchValue.substring(0, correctIndex));
-        // }
+
         return (
           item.itemname
             .toLocaleLowerCase()

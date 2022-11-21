@@ -4,9 +4,8 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import itemRouter from "./src/routes/customerRoutes.js";
-import adminRouter from "./src/routes/adminRoutes.js";
-import googleAPIrouter from "./api/googleApi.js";
+import apiRoutes from "./src/routes/apiRoutes.js";
+import thirdPartyAPIrouter from "./api/thirdPartyApi.js";
 
 import { initDb } from "./src/models/customerModel.js";
 
@@ -26,14 +25,13 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.static(REACT_BUILD_DIR));
 
-app.use("/place", googleAPIrouter);
-app.use("/api", itemRouter);
-app.use("/admin", adminRouter);
+app.use("/place", thirdPartyAPIrouter);
+app.use("/api", apiRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
-// console.log that your server is up and running
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

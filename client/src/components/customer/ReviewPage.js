@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { getReviews } from "../../api/googleApi.js";
+import { getReviews } from "../../api/thirdPartyApi.js";
 
-import { Box, Text, Avatar, Stack } from "@chakra-ui/react";
+import { Box, Text, Avatar, Stack, Divider } from "@chakra-ui/react";
 
 import { StarIcon } from "@chakra-ui/icons";
 
@@ -34,13 +34,13 @@ function ReviewPage() {
       {isLoading ? (
         <p>Loading ...</p>
       ) : (
-        <div>
+        <Box p="6">
           <Box
             mt="1"
             fontWeight="semibold"
             as="h1"
             fontSize="4xl"
-            // lineHeight="tight"
+            spacing="8"
             noOfLines={1}
           >
             Hotel GURUPRASAD
@@ -75,63 +75,60 @@ function ReviewPage() {
 
           {apiData.result.reviews.map((review) => {
             return (
-              <Box
-                py={6}
-                borderWidth="1px"
-                borderRadius="lg"
-                overflow="hidden"
-                key={review.time}
-              >
-                {" "}
-                <Stack spacing={8} direction="row">
+              <Box key={review.time}>
+                <Box py={6} key={review.time}>
                   {" "}
-                  <Box>
-                    <Avatar
-                      mt="1"
-                      ml="1"
-                      size="md"
-                      name={review.author_name}
-                      src={review.author_url}
-                    />{" "}
-                  </Box>{" "}
-                  <Box>
+                  <Stack spacing={8} direction="row">
                     {" "}
-                    <Box
-                      mt="1"
-                      fontWeight="semibold"
-                      as="h4"
-                      lineHeight="tight"
-                      noOfLines={1}
-                    >
-                      {review.author_name}
+                    <Box>
+                      <Avatar
+                        mt="1"
+                        ml="1"
+                        size="md"
+                        name={review.author_name}
+                        src={review.author_url}
+                      />{" "}
+                    </Box>{" "}
+                    <Box>
+                      {" "}
+                      <Box
+                        mt="1"
+                        fontWeight="semibold"
+                        as="h4"
+                        lineHeight="tight"
+                        noOfLines={1}
+                      >
+                        {review.author_name}
+                      </Box>
+                      <Box
+                        color="gray.500"
+                        fontWeight="semibold"
+                        letterSpacing="wide"
+                        fontSize="xs"
+                      >
+                        {review.relative_time_description}
+                      </Box>
+                      <Box display="flex" mt="2" alignItems="center">
+                        {Array(5)
+                          .fill("")
+                          .map((_, i) => (
+                            <StarIcon
+                              key={i}
+                              color={
+                                i < review.rating ? "orange.500" : "gray.300"
+                              }
+                            />
+                          ))}
+                      </Box>
+                      <Text>{review.text}</Text>
                     </Box>
-                    <Box
-                      color="gray.500"
-                      fontWeight="semibold"
-                      letterSpacing="wide"
-                      fontSize="xs"
-                    >
-                      {review.relative_time_description}
-                    </Box>
-                    <Box display="flex" mt="2" alignItems="center">
-                      {Array(5)
-                        .fill("")
-                        .map((_, i) => (
-                          <StarIcon
-                            key={i}
-                            color={
-                              i < review.rating ? "orange.500" : "gray.300"
-                            }
-                          />
-                        ))}
-                    </Box>
-                    <Text>{review.text}</Text>
-                  </Box>
-                </Stack>
+                  </Stack>
+                </Box>
+                <Divider orientation="horizontal" />
               </Box>
             );
           })}
-        </div>
+        </Box>
       )}
     </>
   );

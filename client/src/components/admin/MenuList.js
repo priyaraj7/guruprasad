@@ -35,7 +35,7 @@ function MenuList({
     "Description",
     "Actions",
   ];
-  console.log(itemData);
+
   return (
     <>
       <Box

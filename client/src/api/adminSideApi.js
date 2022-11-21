@@ -9,7 +9,7 @@
 // Menu related API
 export const getItemList = async (token) => {
   try {
-    const response = await fetch(`/admin/menu`, {
+    const response = await fetch(`/api/admin/menu`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -33,7 +33,7 @@ export const addItem = async (newItem, token) => {
   };
 
   try {
-    const response = await fetch(`/admin/menu`, requestOptions);
+    const response = await fetch(`/api/admin/menu`, requestOptions);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -52,7 +52,10 @@ export const updateStatus = async (id, token) => {
   };
 
   try {
-    const response = await fetch(`/admin/menu/${id}/status`, requestOptions);
+    const response = await fetch(
+      `/api/admin/menu/${id}/status`,
+      requestOptions
+    );
     return response.json();
   } catch (error) {
     console.log(error);
@@ -72,7 +75,7 @@ export const updateItemApi = async (id, content, token) => {
   };
 
   try {
-    const response = await fetch(`/admin/menu/${id}`, requestOptions);
+    const response = await fetch(`/api/admin/menu/${id}`, requestOptions);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -85,7 +88,7 @@ export const updateItemApi = async (id, content, token) => {
 // Get Message API
 export const getMessages = async (token) => {
   try {
-    const response = await fetch(`/admin/message`, {
+    const response = await fetch(`/api/admin/message`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -101,7 +104,7 @@ export const getMessages = async (token) => {
 
 export const deleteMessages = async (id, token) => {
   try {
-    const response = await fetch(`/admin/message/${id}`, {
+    const response = await fetch(`/api/admin/message/${id}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
