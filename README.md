@@ -90,4 +90,5 @@ Server runs on http://localhost:4000 and client on http://localhost:3000
 [React Router v6](https://blog.webdevsimplified.com/2022-07/react-router/)  
 [Aggregate Rows into a JSON Array Using the json_agg() Function](http://johnatten.com/2015/04/22/use-postgres-json-type-and-aggregate-functions-to-map-relational-data-to-json/)  
 [Adding a LEFT JOIN on a INSERT INTO....RETURNING](https://stackoverflow.com/questions/59232370/adding-a-left-join-on-a-insert-into-returning)  
-[Git rebase --onto](https://womanonrails.com/git-rebase-onto)
+[Git rebase --onto](https://womanonrails.com/git-rebase-onto)  
+[Update one of the objects in array, in an immutable way](https://stackoverflow.com/questions/43792457/update-one-of-the-objects-in-array-in-an-immutable-way)
