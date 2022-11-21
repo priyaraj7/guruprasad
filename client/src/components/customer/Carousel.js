@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Box, Text, Heading, Container, Stack } from "@chakra-ui/react";
 import Slider from "react-slick";
 
-import { getMealImagesAPI } from "../../api/googleApi";
+import { getMealImagesAPI } from "../../api/thirdPartyApi.js";
 
 // Settings for the slider
 const settings = {

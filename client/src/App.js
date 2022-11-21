@@ -2,20 +2,20 @@ import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 
-// COMPONENTS
+// components
 
-import Header, { ADMIN_LINKS, CUSTOMER_LINKS } from "./component/Header";
-import AdminPage from "./component/admin/AdminPage";
-import AdminHome from "./component/admin/AdminHome";
-import MenuListContainer from "./component/admin/MenuListContainer";
-import MessagesPage from "./component/admin/MessagesPage";
-import Home from "./component/customer/Home";
-import ContactPage from "./component/customer/ContactPage";
-import ReviewPage from "./component/customer/ReviewPage";
+import Header, { ADMIN_LINKS, CUSTOMER_LINKS } from "./components/Header";
+import AdminPage from "./components/admin/AdminPage";
+import AdminHome from "./components/admin/AdminHome";
+import MenuListContainer from "./components/admin/MenuListContainer";
+import MessagesPage from "./components/admin/MessagesPage";
+import Home from "./components/customer/Home";
+import ContactPage from "./components/customer/ContactPage";
+import ReviewPage from "./components/customer/ReviewPage";
 
-import Footer from "./component/Footer";
+import Footer from "./components/Footer";
 
-import Cart from "./component/customer/Cart";
+import Cart from "./components/customer/Cart";
 import { useState } from "react";
 
 function App() {

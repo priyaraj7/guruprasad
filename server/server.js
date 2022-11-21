@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 
 import itemRouter from "./src/routes/customerRoutes.js";
 import adminRouter from "./src/routes/adminRoutes.js";
-import googleAPIrouter from "./api/googleApi.js";
+import thirdPartyAPIrouter from "./api/thirdPartyApi.js";
 
 import { initDb } from "./src/models/customerModel.js";
 
@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.static(REACT_BUILD_DIR));
 
-app.use("/place", googleAPIrouter);
+app.use("/place", thirdPartyAPIrouter);
 app.use("/api", itemRouter);
 app.use("/admin", adminRouter);
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { getReviews } from "../../api/googleApi.js";
+import { getReviews } from "../../api/thirdPartyApi.js";
 
 import { Box, Text, Avatar, Stack, Divider } from "@chakra-ui/react";
 
