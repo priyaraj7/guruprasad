@@ -23,35 +23,43 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ### Project structure
 
-**Client**
+### Installation
 
-- [api/](./src/api) # API fetching
-  - [adminSideApi.js](./src/api/adminSideApi.js)
-  - [menuListApi.js](./src/api/menuListApi.js)
-  - [thirdPartyApi.js](./src/api/thirdPartyApi.js)
-- [components/](./src/components)
-  - [admin/](./src/components/admin)
-    - [**test**/](./src/components/admin/__test__)
-      - [MenuForm.test.js](./src/components/admin/__test__/MenuForm.test.js)
-      - [MenuList.test.js](./src/components/admin/__test__/MenuList.test.js)
-      - [MenuListContainer.test.js](./src/components/admin/__test__/MenuListContainer.test.js)
-    - [AdminHome.js](./src/components/admin/AdminHome.js)
-    - [AdminPage.js](./src/components/admin/AdminPage.js)
-    - [MenuForm.js](./src/components/admin/MenuForm.js)
-    - [MenuList.js](./src/components/admin/MenuList.js)
-    - [MenuListContainer.js](./src/components/admin/MenuListContainer.js)
-    - [MessagesPage.js](./src/components/admin/MessagesPage.js)
-  - [customer/](./src/components/customer)
-    - [Carousel.js](./src/components/customer/Carousel.js)
-    - [Cart.js](./src/components/customer/Cart.js)
-    - [ContactForm.js](./src/components/customer/ContactForm.js)
-    - [ContactPage.js](./src/components/customer/ContactPage.js)
-    - [Home.js](./src/components/customer/Home.js)
-    - [ReviewPage.js](./src/components/customer/ReviewPage.js)
-  - [Footer.js](./src/components/Footer.js)
-  - [Header.js](./src/components/Header.js)
-  - [Logo.js](./src/components/Logo.js)
-  - [PageNotFound.js](./src/components/PageNotFound.js)
-  - [loading.js](./src/components/loading.js)
-- [App.js](./src/App.js)
-- [index.js](./src/index.js)
+Clone the restaurant menu repository
+
+```bash
+git clone https://github.com/priyaraj7/guruprasad.git
+```
+
+Move inside the repo
+
+```bash
+cd weather-forecast
+```
+
+Next move into the server and install dependencies and start the server
+
+```bash
+cd server
+npm install
+npm start
+```
+
+Create a `.env` file and enter your api-key. You can refer `.env-example` file
+
+Open another terminal then cd into the client, install dependencies and start the server
+
+```bash
+cd client
+npm install
+npm start
+```
+
+create a .env file and enter your Auth0 credential.
+
+Navigate to `http://localhost:3000/` and enter the city name. You will get the one day weather forecast of the city
+
+![screenshot](./weather.png)
+
+Note:
+Server runs on http://localhost:5000 and client on http://localhost:3000
