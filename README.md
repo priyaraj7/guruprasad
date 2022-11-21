@@ -2,6 +2,12 @@
 
 Pandemic and the nationwide lock-down have affected the restaurant industry badly. Most of the restaurants shut down during the pandemic. I was inspired by my uncle’s hardship during the lock-down with his restaurant in India. This app is for my uncle to show how he can make use of technology and increase his businesses revenue.
 
+[![GitHub Pull Request](https://img.shields.io/github/issues-pr-closed/priyaraj7/guruprasad)](https://github.com/priyaraj7/guruprasad/pulls)
+[![GitHub repo size](https://img.shields.io/github/repo-size/priyaraj7/guruprasad)](https://github.com/priyaraj7/guruprasad/)
+[![GitHub contributors](https://img.shields.io/github/contributors/priyaraj7/guruprasad)](https://github.com/priyaraj7/guruprasad/)
+
+## Table of Contents
+
 ### TOOLS AND TECHNOLOGIES
 
 - Frontend: React, Chakra UI
@@ -25,6 +31,8 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ### Installation
 
+First you need to create an [Auth0 API](https://auth0.com/), [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview).
+
 Clone the restaurant menu repository
 
 ```bash
@@ -34,7 +42,7 @@ git clone https://github.com/priyaraj7/guruprasad.git
 Move inside the repo
 
 ```bash
-cd weather-forecast
+cd guruprasad
 ```
 
 Next move into the server and install dependencies and start the server
@@ -45,21 +53,41 @@ npm install
 npm start
 ```
 
-Create a `.env` file and enter your api-key. You can refer `.env-example` file
+Create a `.env` file and enter your api-key. You can refer `.env-example` file.
+
+Using this command, restore the Postgres Database
+
+```bash
+psql postgres -f db.sql
+```
 
 Open another terminal then cd into the client, install dependencies and start the server
 
 ```bash
 cd client
 npm install
+```
+
+Create a .env file and enter your Auth0 credential.
+
+Start the browser
+
+```bash
 npm start
 ```
 
-create a .env file and enter your Auth0 credential.
-
-Navigate to `http://localhost:3000/` and enter the city name. You will get the one day weather forecast of the city
-
-![screenshot](./weather.png)
+Your browser should automatically open at http://localhost:3000.
 
 Note:
-Server runs on http://localhost:5000 and client on http://localhost:3000
+Server runs on http://localhost:4000 and client on http://localhost:3000
+
+### Credits
+
+### Resource Referred
+
+[Node (Express) API: Authorization](https://auth0.com/docs/quickstart/backend/nodejs/01-authorization)  
+[React user Login](https://www.youtube.com/watch?v=pAzqscDx580)  
+[React Router v6](https://blog.webdevsimplified.com/2022-07/react-router/)  
+[Aggregate Rows into a JSON Array Using the json_agg() Function](http://johnatten.com/2015/04/22/use-postgres-json-type-and-aggregate-functions-to-map-relational-data-to-json/)  
+[Adding a LEFT JOIN on a INSERT INTO....RETURNING](https://stackoverflow.com/questions/59232370/adding-a-left-join-on-a-insert-into-returning)  
+[Git rebase --onto](https://womanonrails.com/git-rebase-onto)
