@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Text, Heading, Container, Stack } from "@chakra-ui/react";
+import { Box, Text, Heading, Container, Stack, Badge } from "@chakra-ui/react";
 import Slider from "react-slick";
 
 import { getMealImagesAPI } from "../../api/thirdPartyApi.js";
@@ -76,22 +76,21 @@ export default function Carousel() {
               >
                 <Heading
                   textAlign="center"
-                  bgGradient="linear(to-l, #7928CA, #FF0080)"
-                  bgClip="text"
+                  color="white"
                   fontSize="6xl"
                   fontWeight="extrabold"
                 >
-                  Guruprasad
+                  GURUPRASAD
                 </Heading>
-                <Text
-                  textAlign="center"
-                  bgGradient="linear(red.100 0%, orange.100 25%, yellow.100 50%)"
-                  bgClip="text"
-                >
-                  Passionate about good food and service
+                <Text textAlign="center" as="i">
+                  <Badge borderRadius="full" px="2" colorScheme="teal">
+                    Passionate about good food and service
+                  </Badge>
                 </Text>
-                <Text color="green" textAlign="center">
-                  Veg Tiffin and meals
+                <Text textAlign="center">
+                  <Badge borderRadius="full" px="2" colorScheme="green">
+                    Veg Tiffin and meals
+                  </Badge>
                 </Text>
               </Stack>
             </Container>
