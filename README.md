@@ -29,6 +29,73 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ### Project structure
 
+**Client**
+
+- [src/](./client/src)
+
+  - [api/](./client/src/api)
+    - [adminSideApi.js](./client/src/api/adminSideApi.js)
+    - [menuListApi.js](./client/src/api/menuListApi.js)
+    - [thirdPartyApi.js](./client/src/api/thirdPartyApi.js)
+  - [components/](./client/src/components)
+    - [admin/](./client/src/components/admin)
+      - [**test**/](./client/src/components/admin/__test__)
+        - [AdminHome.test.js](./client/src/components/admin/__test__/AdminHome.test.js)
+        - [MenuForm.test.js](./client/src/components/admin/__test__/MenuForm.test.js)
+        - [MenuList.test.js](./client/src/components/admin/__test__/MenuList.test.js)
+        - [MenuListContainer.test.js](./client/src/components/admin/__test__/MenuListContainer.test.js)
+        - [MessagePage.test.js](./client/src/components/admin/__test__/MessagePage.test.js)
+      - [AdminHome.js](./client/src/components/admin/AdminHome.js)
+      - [AdminPage.js](./client/src/components/admin/AdminPage.js)
+      - [MenuForm.js](./client/src/components/admin/MenuForm.js)
+      - [MenuList.js](./client/src/components/admin/MenuList.js)
+      - [MenuListContainer.js](./client/src/components/admin/MenuListContainer.js)
+      - [MessagesPage.js](./client/src/components/admin/MessagesPage.js)
+    - [customer/](./client/src/components/customer)
+      - [**test**/](./client/src/components/customer/__test__)
+        - [ContactForm.test.js](./client/src/components/customer/__test__/ContactForm.test.js)
+        - [ContactPage.test.js](./client/src/components/customer/__test__/ContactPage.test.js)
+        - [Home.test.js](./client/src/components/customer/__test__/Home.test.js)
+        - [ReviewPage.test.js](./client/src/components/customer/__test__/ReviewPage.test.js)
+      - [Carousel.js](./client/src/components/customer/Carousel.js)
+      - [Cart.js](./client/src/components/customer/Cart.js)
+      - [ContactForm.js](./client/src/components/customer/ContactForm.js)
+      - [ContactPage.js](./client/src/components/customer/ContactPage.js)
+      - [Home.js](./client/src/components/customer/Home.js)
+      - [ReviewPage.js](./client/src/components/customer/ReviewPage.js)
+    - [Footer.js](./client/src/components/Footer.js)
+    - [Header.js](./client/src/components/Header.js)
+    - [Logo.js](./client/src/components/Logo.js)
+    - [PageNotFound.js](./client/src/components/PageNotFound.js)
+    - [loading.js](./client/src/components/loading.js)
+  - [App.css](./client/src/App.css)
+  - [App.js](./client/src/App.js)
+  - [App.test.js](./client/src/App.test.js)
+  - [index.css](./client/src/index.css)
+  - [index.js](./client/src/index.js)
+
+  **Server**
+
+  - [api/](./server/api)
+  - [mockGoogleApiData .js](./server/api/mockGoogleApiData .js)
+  - [thirdPartyApi.js](./server/api/thirdPartyApi.js)
+
+- [db/](./server/db)
+  - [db-connection.js](./server/db/db-connection.js)
+- [src/](./server/src)
+  - [controller/](./server/src/controller)
+    - [adminController.js](./server/src/controller/adminController.js)
+    - [customerController.js](./server/src/controller/customerController.js)
+  - [models/](./server/src/models)
+    - [adminModel.js](./server/src/models/adminModel.js)
+    - [customerModel.js](./server/src/models/customerModel.js)
+  - [routes/](./server/src/routes)
+    - [adminApiRoutes.js](./server/src/routes/adminApiRoutes.js)
+    - [apiRoutes.js](./server/src/routes/apiRoutes.js)
+- [.env.example](./server/.env.example)
+- [db.sql](./server/db.sql)
+- [server.js](./server/server.js)
+
 ### Installation
 
 First you need to create an [Auth0 API](https://auth0.com/), [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview).
