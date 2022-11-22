@@ -8,7 +8,19 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ## Table of Contents
 
-### TOOLS AND TECHNOLOGIES
+## User Story
+
+- Customer can view the menu, add the item to the shopping cart, delete items from the cart.
+- Customer can contact the restaurant by filling the contact form.
+- Customer can view restaurant review.
+- Admin can add, edit the menu item, toggle the status of the item.
+- Admin cam search the item according to category name and item name.
+- Admin can view and delete the messages from the customers.
+- This app is mobile and desktop friendly app.
+
+## Demo
+
+## TOOLS AND TECHNOLOGIES
 
 - Frontend: React, Chakra UI
 - Backend: Node.js, Express.js
@@ -27,7 +39,7 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 - Customer side - [Mobile view](https://www.figma.com/proto/cosyASpTYSsTqf9mcC6NeX/ClientSide?node-id=75%3A3009&scaling=scale-down&page-id=66%3A1860&starting-point-node-id=75%3A3009)
 - Admin side - [Desktop view](https://www.figma.com/proto/oBDf4ofFocDR4DiIbe4RVk/Admin?node-id=27%3A242&scaling=scale-down&page-id=0%3A1&starting-point-node-id=27%3A242)
 
-### Project structure
+### Project structure - Links for files and components
 
 **Client**
 
@@ -76,13 +88,14 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
   **Server**
 
-  - [api/](./server/api)
-  - [mockGoogleApiData .js](./server/api/mockGoogleApiData .js)
+* [api/](./server/api)
   - [thirdPartyApi.js](./server/api/thirdPartyApi.js)
-
-- [db/](./server/db)
+* [db/](./server/db)
   - [db-connection.js](./server/db/db-connection.js)
-- [src/](./server/src)
+* [reference/](./server/reference)
+  - [mockitem.js](./server/reference/mockitem.js)
+  - [seed.sql](./server/reference/seed.sql)
+* [src/](./server/src)
   - [controller/](./server/src/controller)
     - [adminController.js](./server/src/controller/adminController.js)
     - [customerController.js](./server/src/controller/customerController.js)
@@ -92,9 +105,9 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
   - [routes/](./server/src/routes)
     - [adminApiRoutes.js](./server/src/routes/adminApiRoutes.js)
     - [apiRoutes.js](./server/src/routes/apiRoutes.js)
-- [.env.example](./server/.env.example)
-- [db.sql](./server/db.sql)
-- [server.js](./server/server.js)
+* [.env.example](./server/.env.example)
+* [db.sql](./server/db.sql)
+* [server.js](./server/server.js)
 
 ### Installation
 
@@ -112,7 +125,7 @@ Move inside the repo
 cd guruprasad
 ```
 
-Next move into the server and install dependencies and start the server
+Next move into the server and install dependencies
 
 ```bash
 cd server
@@ -150,7 +163,7 @@ Server runs on http://localhost:4000 and client on http://localhost:3000
 
 ### Credits
 
-### Resource Referred
+### Sources
 
 [Node (Express) API: Authorization](https://auth0.com/docs/quickstart/backend/nodejs/01-authorization)  
 [React user Login](https://www.youtube.com/watch?v=pAzqscDx580)  
