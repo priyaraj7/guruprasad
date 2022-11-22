@@ -77,7 +77,7 @@ function ContactForm() {
         <form onSubmit={formik.handleSubmit}>
           <VStack spacing={5}>
             <FormControl id="name">
-              <FormLabel>Your Name</FormLabel>
+              <FormLabel htmlFor="name">Your Name</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
                   pointerEvents="none"
@@ -97,7 +97,7 @@ function ContactForm() {
               ) : null}
             </FormControl>
             <FormControl id="email">
-              <FormLabel>Mail</FormLabel>
+              <FormLabel htmlFor="email">Mail</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
                   pointerEvents="none"
@@ -118,7 +118,7 @@ function ContactForm() {
               ) : null}
             </FormControl>
             <FormControl id="phone">
-              <FormLabel>Phone Number</FormLabel>
+              <FormLabel htmlFor="phone">Phone Number</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
                   pointerEvents="none"
@@ -135,7 +135,7 @@ function ContactForm() {
               </InputGroup>
             </FormControl>
             <FormControl id="message">
-              <FormLabel>Message</FormLabel>
+              <FormLabel htmlFor="message">Message</FormLabel>
               <Textarea
                 borderColor="gray.300"
                 _hover={{

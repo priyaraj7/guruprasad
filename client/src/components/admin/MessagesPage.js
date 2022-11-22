@@ -15,9 +15,11 @@ import { AdminContext } from "./AdminPage";
 // API
 import { getMessages, deleteMessages } from "../../api/adminSideApi";
 
-function MessagesPage() {
+export function MessagesPage() {
   const [userMessages, setUserMessages] = useState([]);
   const token = useContext(AdminContext);
+
+  console.log(userMessages);
 
   useEffect(() => {
     const getMessageList = async () => {
@@ -64,10 +66,7 @@ function MessagesPage() {
       ("0" + date.getMinutes()).slice(-2)
     );
   }
-
-  const myTime = getDateTimeFromTimestamp(1435986900000);
-  console.log(myTime);
-
+  console.log(userMessages);
   return (
     <>
       {userMessages.map((message) => {
@@ -102,11 +101,13 @@ function MessagesPage() {
                 >
                   {getDateTimeFromTimestamp(message.messaged_at)}
                 </Box>
-                <Text>{message.message}</Text>
+                <Text as="i" color="gray.500">
+                  {message.email}
+                </Text>
                 <Text>{message.message}</Text>
               </Box>
               <Spacer />
-              <Button onClick={() => deleteMessage(message.id)}>delete</Button>
+              <Button onClick={() => deleteMessage(message.id)}>Delete</Button>
             </Stack>
           </Box>
         );
