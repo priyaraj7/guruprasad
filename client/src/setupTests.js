@@ -4,7 +4,6 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
-// I added this code because while testing I got the error
 // matchMedia not present, legacy browsers require a polyfill
 window.matchMedia =
   window.matchMedia ||

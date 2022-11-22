@@ -14,9 +14,9 @@ describe("should have menu list in home Page", () => {
     api.getAllItem.mockResolvedValue([
       {
         id: 1,
-        category_name: "Early Breakfast",
+        categoryname: "Early Breakfast",
         description: "6.30am to 12pm",
-        item: [
+        items: [
           {
             id: 1,
             itemname: "Idli",
@@ -37,9 +37,9 @@ describe("should have menu list in home Page", () => {
       },
       {
         id: 2,
-        category_name: "Breakfast",
+        categoryname: "Breakfast",
         description: "7.30am to 6.30pm",
-        item: [
+        items: [
           {
             id: 6,
             itemname: "Parota",
@@ -51,7 +51,7 @@ describe("should have menu list in home Page", () => {
         id: 3,
         category_name: "Supper",
         description: "12pm to 7.30pm",
-        item: [
+        items: [
           {
             id: 12,
             itemname: "Meal",
@@ -67,9 +67,9 @@ describe("should have menu list in home Page", () => {
       },
       {
         id: 4,
-        category_name: "Beverages",
+        categoryname: "Beverages",
         description: null,
-        item: [
+        items: [
           {
             id: 16,
             itemname: "Coffee",
@@ -81,12 +81,7 @@ describe("should have menu list in home Page", () => {
     render(<Home />);
 
     await waitFor(() => expect(api.getAllItem).toHaveBeenCalledTimes(1));
-    //expect(await screen.findByText(/Early Breakfast/i)).toBeInTheDocument();
-    //expect(await screen.findByText("6.30am to 12pm")).toBeInTheDocument();
-
-    //expect(api.getAllItem).toHaveBeenCalled();
-    // expect(await screen.findByText(/textonscreen/i)).toBeInTheDocument();
-    // const titleElement = screen.getByText(/Early Breakfast/i);
-    // await expect(titleElement).toBeInTheDocument();
+    expect(await screen.findByText(/Early Breakfast/i)).toBeInTheDocument();
+    expect(await screen.findByText("6.30am to 12pm")).toBeInTheDocument();
   });
 });

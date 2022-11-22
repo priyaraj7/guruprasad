@@ -66,7 +66,7 @@ export function MessagesPage() {
       ("0" + date.getMinutes()).slice(-2)
     );
   }
-
+  console.log(userMessages);
   return (
     <>
       {userMessages.map((message) => {
