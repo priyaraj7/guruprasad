@@ -1,4 +1,4 @@
-import { Box, Text, Heading, Container, Stack } from "@chakra-ui/react";
+import { Text, Heading, Container } from "@chakra-ui/react";
 function AdminHome() {
   return (
     <Container>

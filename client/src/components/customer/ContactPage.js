@@ -37,10 +37,7 @@ function ContactPage() {
                     <VStack pl={0} spacing={3} alignItems="flex-start">
                       <Button
                         size="md"
-                        // height="48px"
-                        // width="200px"
                         variant="ghost"
-                        // color="#DCE2FF"
                         _hover={{ border: "2px solid #1C6FEB" }}
                         leftIcon={<MdPhone color="#1970F1" size="20px" />}
                       >
