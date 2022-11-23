@@ -9,10 +9,10 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 ## Table of Contents
 
 - [User Story](#user-story)
+- [Future Development](#future-development)
 - [Demo](#demo)
 - [Tools & Technology Used](#tools--technology-used)
 - [Project Structure - Links for files and components](#project-structure---links-for-files-and-components)
-- [Future Development](#future-development)
 - [Wire frame](#wire-frame)
 - [Installation](#installation)
 - [Acknowledgement](#acknowledgement)
@@ -57,7 +57,7 @@ Live Demo [Link](https://api-et67.onrender.com)
 - APIs: [Google Place API](https://developers.google.com/maps/documentation/places/web-service/details), [MealDB](https://www.themealdb.com/api.php), Auth0
 - Design: Figma, drawSQL
 
-## Database diagram
+## Database Diagram
 
 [dbdiagram](https://drawsql.app/teams/supriya-1/diagrams/restuarant)
 
