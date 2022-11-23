@@ -8,15 +8,15 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ## Table of Contents
 
-[User Story](#user-story)  
-[Demo](#demo)  
-[Tools & Technology Used](#tools--technology-used)  
-[Project Structure - Links for files and components](#project-structure---links-for-files-and-components)
-[Future Development](#future-development)
-[Wire frame](#wire-frame)  
-[Installation](#installation)  
-[Acknowledgement](#acknowledgement)  
-[Resources](#resources)
+- [User Story](#user-story)
+- [Demo](#demo)
+- [Tools & Technology Used](#tools--technology-used)
+- [Project Structure - Links for files and components](#project-structure---links-for-files-and-components)
+- [Future Development](#future-development)
+- [Wire frame](#wire-frame)
+- [Installation](#installation)
+- [Acknowledgement](#acknowledgement)
+- [Resources](#resources)
 
 ## User Story
 
@@ -69,9 +69,9 @@ Live Demo [Link](https://api-et67.onrender.com)
 - Customer side - [Mobile view](https://www.figma.com/proto/cosyASpTYSsTqf9mcC6NeX/ClientSide?node-id=75%3A3009&scaling=scale-down&page-id=66%3A1860&starting-point-node-id=75%3A3009)
 - Admin side - [Desktop view](https://www.figma.com/proto/oBDf4ofFocDR4DiIbe4RVk/Admin?node-id=27%3A242&scaling=scale-down&page-id=0%3A1&starting-point-node-id=27%3A242)
 
-<details><summary>CLICK HERE for Links for files and components</summary>
-
 ### Project Structure - Links for files and components
+
+<details><summary>CLICK HERE for Links for files and components</summary>
 
 **Client**
 
@@ -144,7 +144,7 @@ Live Demo [Link](https://api-et67.onrender.com)
 
 ## Installation
 
-First you need to create an [Auth0 API](https://auth0.com/), [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview).
+First you need to get an [Auth0 API](https://auth0.com/), [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview) key.
 
 Clone the restaurant menu repository
 
@@ -168,13 +168,13 @@ npm start
 
 Create a `.env` file and enter your api-key. You can refer `.env-example` file.
 
-Using this command, restore the Postgres Database
+Next restore the Postgres Database
 
 ```bash
 psql postgres -f db.sql
 ```
 
-Open another terminal then cd into the client, install dependencies and start the server
+Open another terminal then cd into the client, install dependencies
 
 ```bash
 cd client
