@@ -54,7 +54,7 @@ Live Demo [Link](https://api-et67.onrender.com)
 - Backend: Node.js, Express.js
 - Database: PostgreSQL
 - Testing: React Testing Library
-- APIs: [Google Place API](https://developers.google.com/maps/documentation/places/web-service/details), [MealDB](https://www.themealdb.com/api.php), Auth0
+- APIs: [Google Place API](https://developers.google.com/maps/documentation/places/web-service/details), [TheMealDB](https://www.themealdb.com/api.php), [Auth0](https://auth0.com/docs/get-started/auth0-overview/set-up-apis)
 - Design: Figma, drawSQL
 
 ## Database Diagram
