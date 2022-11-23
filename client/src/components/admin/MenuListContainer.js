@@ -24,7 +24,7 @@ export function MenuListContainer() {
   const [isEditing, setIsEditing] = useState(false);
   const [isFormVisible, setFormVisible] = useState(false);
   // to know which item we are editing
-  const initialFormState = { itemname: "", price: "", categoryId: "" };
+  const initialFormState = { itemname: "", price: "", categoryid: "" };
   const [currentItem, setCurrentItem] = useState(initialFormState);
   const token = useContext(AdminContext);
 
@@ -104,10 +104,10 @@ export function MenuListContainer() {
 
         return (
           item.itemname
-            .toLocaleLowerCase()
+            ?.toLocaleLowerCase()
             .split(" ")
             .some((word) => word.startsWith(searchValue)) ||
-          item.categoryname.toLowerCase().startsWith(searchValue)
+          item.categoryname?.toLowerCase().startsWith(searchValue)
         );
       });
       setFilteredItemData(result);
