@@ -81,7 +81,7 @@ function MenuForm({ handleItem, values, handleClose, buttonText = "Add" }) {
                   id="categoryId"
                   placeholder="Select option"
                   data-testid="select-category"
-                  name="categoryId"
+                  name="categoryid"
                   value={(selectedCategory || {}).value}
                   onChange={handleChange}
                 >

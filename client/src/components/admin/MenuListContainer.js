@@ -42,7 +42,7 @@ export function MenuListContainer() {
 
   const addNewItem = async (newItem) => {
     const content = await addItem(newItem, token);
-    setItemData([...itemData, content]);
+    setItemData([content, ...itemData]);
     setFormVisible(false);
   };
 
@@ -130,6 +130,7 @@ export function MenuListContainer() {
         handleOnClickEditItem={onClickEditItem}
         handleOnAddClick={() => {
           setFormVisible(true);
+          setIsEditing(false);
           setCurrentItem(initialFormState);
         }}
       />

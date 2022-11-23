@@ -6,18 +6,16 @@ import { Outlet } from "react-router-dom";
 export const AdminContext = createContext(null);
 
 function AdminPage() {
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const [tokenData, setTokenData] = useState(null);
   useEffect(() => {
     (async () => {
-      if (isAuthenticated) {
-        const audience = process.env.REACT_APP_AUDIENCE;
-        const token = await getAccessTokenSilently({ audience });
-        setTokenData(token);
-      }
+      const audience = process.env.REACT_APP_AUDIENCE;
+      const token = await getAccessTokenSilently({ audience });
+      setTokenData(token);
     })();
     //  useEffect call when dependency array changes (i.e it won't call every rerender)
-  }, [getAccessTokenSilently, isAuthenticated]);
+  }, []);
   return (
     <>
       <AdminContext.Provider value={tokenData}>

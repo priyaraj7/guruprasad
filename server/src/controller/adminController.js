@@ -32,12 +32,12 @@ export const getItemController = async (req, res) => {
 
 // Post request
 export const addItemController = async (req, res) => {
-  const categoryId = Number(req.body.categoryId);
-  console.log(categoryId);
+  const categoryid = Number(req.body.categoryid);
+  console.log(categoryid);
   const newItem = {
     itemName: req.body.itemname,
     price: req.body.price,
-    categoryId: categoryId,
+    categoryid: categoryid,
   };
 
   try {

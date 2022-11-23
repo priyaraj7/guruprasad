@@ -31,7 +31,7 @@ export default function (db) {
       item(item_name, price, category_id)
     VALUES($1, $2, $3) RETURNING *)   
     ${frontendDataQuery}`;
-      const values = [item.itemName, item.price, item.categoryId];
+      const values = [item.itemName, item.price, item.categoryid];
 
       return await db.query(insertQuery, values);
     },
@@ -43,7 +43,7 @@ export default function (db) {
 
     updateItem: async (id, item) => {
       const query = `with item as (Update item SET item_name = $1, price = $2,category_id = $3 where id = $4 RETURNING *) ${frontendDataQuery}`;
-      const values = [item.itemname, item.price, item.categoryId, id];
+      const values = [item.itemname, item.price, item.categoryid, id];
       return await db.query(query, values);
     },
 
