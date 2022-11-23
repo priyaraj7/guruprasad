@@ -20,13 +20,16 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ## Demo
 
+Live Demo [Link](https://api-et67.onrender.com)
+
+Admin page View
 ![Admin Page](https://github.com/priyaraj7/Image/blob/main/adminpage%20copy.gif)
-
+Customer page Desktop View
 ![Customer Page - Desktop View](https://github.com/priyaraj7/Image/blob/main/customerpage.gif)
-
+Customer page Mobile View
 ![Customer Page - Mobile View](https://github.com/priyaraj7/Image/blob/main/mobileview.gif)
 
-## TOOLS AND TECHNOLOGIES
+## Tools & Technology used
 
 - Frontend: React, Chakra UI
 - Backend: Node.js, Express.js
@@ -35,15 +38,18 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 - APIs: [Google Place API](https://developers.google.com/maps/documentation/places/web-service/details), [MealDB](https://www.themealdb.com/api.php), Auth0
 - Design: Figma, drawSQL
 
-### Database diagram
+## Database diagram
 
 [dbdiagram](https://drawsql.app/teams/supriya-1/diagrams/restuarant)
+![Database diagram](https://github.com/priyaraj7/Image/blob/main/DB%20Diagram.png)
 
-### Wireframe
+## Wireframe
 
 - Customer side - [Desktop view](https://www.figma.com/proto/cosyASpTYSsTqf9mcC6NeX/ClientSide?node-id=2%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A2)
 - Customer side - [Mobile view](https://www.figma.com/proto/cosyASpTYSsTqf9mcC6NeX/ClientSide?node-id=75%3A3009&scaling=scale-down&page-id=66%3A1860&starting-point-node-id=75%3A3009)
 - Admin side - [Desktop view](https://www.figma.com/proto/oBDf4ofFocDR4DiIbe4RVk/Admin?node-id=27%3A242&scaling=scale-down&page-id=0%3A1&starting-point-node-id=27%3A242)
+
+<details><summary>CLICK HERE for Links for files and components</summary>
 
 ### Project structure - Links for files and components
 
@@ -114,8 +120,9 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 * [.env.example](./server/.env.example)
 * [db.sql](./server/db.sql)
 * [server.js](./server/server.js)
+</details>
 
-### Installation
+## Installation
 
 First you need to create an [Auth0 API](https://auth0.com/), [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview).
 
@@ -167,9 +174,11 @@ Your browser should automatically open at http://localhost:3000.
 Note:
 Server runs on http://localhost:4000 and client on http://localhost:3000
 
-### Credits
+## Acknowledgement
 
-### Sources
+I'm extremely grateful to my Mentor - [Chris Jaure](https://github.com/chrisjaure) and Techtonica team for their help on this project.
+
+## Sources
 
 [Node (Express) API: Authorization](https://auth0.com/docs/quickstart/backend/nodejs/01-authorization)  
 [React user Login](https://www.youtube.com/watch?v=pAzqscDx580)  
