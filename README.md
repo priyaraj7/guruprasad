@@ -20,6 +20,12 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ## Demo
 
+![Admin Page](https://github.com/priyaraj7/Image/blob/main/adminpage%20copy.gif)
+
+![Customer Page - Desktop View](https://github.com/priyaraj7/Image/blob/main/customerpage.gif)
+
+![Customer Page - Mobile View](https://github.com/priyaraj7/Image/blob/main/mobileview.gif)
+
 ## TOOLS AND TECHNOLOGIES
 
 - Frontend: React, Chakra UI
