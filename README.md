@@ -8,28 +8,47 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 
 ## Table of Contents
 
+[User Story](#user-story)  
+[Demo](#demo)  
+[Tools & Technology Used](#tools--technology-used)  
+[Project Structure - Links for files and components](#project-structure---links-for-files-and-components)
+[Future Development](#future-development)
+[Wire frame](#wire-frame)  
+[Installation](#installation)  
+[Acknowledgement](#acknowledgement)  
+[Resources](#resources)
+
 ## User Story
 
 - Customer can view the menu, add the item to the shopping cart, delete items from the cart.
 - Customer can contact the restaurant by filling the contact form.
 - Customer can view restaurant review.
+- Admin can login and logout
 - Admin can add, edit the menu item, toggle the status of the item.
 - Admin cam search the item according to category name and item name.
 - Admin can view and delete the messages from the customers.
 - This app is mobile and desktop friendly app.
 
+## Future Development
+
+- Adding more test cases.
+- Adding order table to database.
+- Customer login and logout feature.
+
 ## Demo
 
 Live Demo [Link](https://api-et67.onrender.com)
 
-Admin page View
+**Admin page View**
 ![Admin Page](https://github.com/priyaraj7/Image/blob/main/adminpage%20copy.gif)
-Customer page Desktop View
+
+**Customer page Desktop View**
 ![Customer Page - Desktop View](https://github.com/priyaraj7/Image/blob/main/customerpage.gif)
-Customer page Mobile View
+
+**Customer page Mobile View**
 ![Customer Page - Mobile View](https://github.com/priyaraj7/Image/blob/main/mobileview.gif)
 
-## Tools & Technology used
+## Tools & Technology Used
 
 - Frontend: React, Chakra UI
 - Backend: Node.js, Express.js
@@ -41,6 +60,7 @@ Customer page Mobile View
 ## Database diagram
 
 [dbdiagram](https://drawsql.app/teams/supriya-1/diagrams/restuarant)
+
 ![Database diagram](https://github.com/priyaraj7/Image/blob/main/DB%20Diagram.png)
 
 ## Wireframe
@@ -51,7 +71,7 @@ Customer page Mobile View
 
 <details><summary>CLICK HERE for Links for files and components</summary>
 
-### Project structure - Links for files and components
+### Project Structure - Links for files and components
 
 **Client**
 
@@ -178,7 +198,7 @@ Server runs on http://localhost:4000 and client on http://localhost:3000
 
 I'm extremely grateful to my Mentor - [Chris Jaure](https://github.com/chrisjaure) and Techtonica team for their help on this project.
 
-## Sources
+## Resources
 
 [Node (Express) API: Authorization](https://auth0.com/docs/quickstart/backend/nodejs/01-authorization)  
 [React user Login](https://www.youtube.com/watch?v=pAzqscDx580)  
