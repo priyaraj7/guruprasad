@@ -13,7 +13,7 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 - [Demo](#demo)
 - [Tools & Technology Used](#tools--technology-used)
 - [Project Structure - Links for files and components](#project-structure---links-for-files-and-components)
-- [Wire frame](#wire-frame)
+- [Wireframe](#wire-frame)
 - [Installation](#installation)
 - [Acknowledgement](#acknowledgement)
 - [Resources](#resources)
@@ -40,12 +40,15 @@ Pandemic and the nationwide lock-down have affected the restaurant industry badl
 Live Demo [Link](https://api-et67.onrender.com)
 
 **Admin page View**
+
 ![Admin Page](https://github.com/priyaraj7/Image/blob/main/adminpage%20copy.gif)
 
 **Customer page Desktop View**
+
 ![Customer Page - Desktop View](https://github.com/priyaraj7/Image/blob/main/customerpage.gif)
 
 **Customer page Mobile View**
+
 ![Customer Page - Mobile View](https://github.com/priyaraj7/Image/blob/main/mobileview.gif)
 
 ## Tools & Technology Used
